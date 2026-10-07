@@ -19,10 +19,12 @@
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/sakura-branch.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/commissions.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
-<body>
+<body class="cpage">
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="nav">
@@ -39,143 +41,173 @@
   </header>
 
   <main id="main">
-    <section class="c-hero wrap">
-      <div class="c-hero__copy">
-        <h1 class="c-hero__title">Roblox scripting, built to feel right.</h1>
-        <p class="hero__sub">I script movement, combat, UI, and the systems underneath them in Luau. Tell me what you're making.</p>
-        <div class="hero__ctas">
-          <a class="btn btn--primary" href="#request">Request a commission</a>
-          <a class="btn btn--ghost" href="#terms">Read the terms</a>
+    <!-- Hero: painting fills the band, copy sits in its empty misty left side -->
+    <section class="ch">
+      <img class="ch__art" src="assets/img/sakura-branch.webp" width="1200" height="659" alt="" fetchpriority="high">
+      <div class="wrap ch__inner">
+        <div class="ch__copy">
+          <p class="status"><span class="status__dot" aria-hidden="true"></span>Open for commissions</p>
+          <h1 class="ch__title">Roblox scripting, built to <em>feel</em> right.</h1>
+          <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Tell me what you're making.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="#request">Request a commission</a>
+            <a class="btn btn--glass" href="#terms">Read the terms</a>
+          </div>
         </div>
+        <figure class="ch__me">
+          <img src="assets/avatar.jpg" width="460" height="460" alt="Joshua's profile picture: an anime-style illustration in soft pink and crimson">
+          <figcaption><strong>Ruha.luau</strong><span>on Discord</span></figcaption>
+        </figure>
       </div>
-      <img class="c-hero__avatar" src="assets/avatar.jpg" width="460" height="460" alt="Joshua's profile picture: an anime-style illustration in soft pink and crimson">
     </section>
 
+    <!-- Services: image-led bento, five cells for five services -->
     <section class="section wrap reveal" aria-labelledby="services-title">
-      <h2 class="section__title" id="services-title">What I script</h2>
-      <ul class="services">
-        <li class="service service--wide">
-          <svg class="icon service__icon" aria-hidden="true"><use href="assets/icons.svg#i-person-simple-run"/></svg>
-          <h3>Movement systems</h3>
-          <p>Sprinting, dashing, sliding, wall runs, climbing, double jumps, and custom character controllers.</p>
+      <h2 class="c-title" id="services-title">What I script</h2>
+      <ul class="sv">
+        <li class="sv__cell sv__cell--art sv--move">
+          <img src="assets/img/petal-figure.webp" width="736" height="749" alt="" loading="lazy">
+          <div class="sv__text">
+            <svg class="icon sv__icon" aria-hidden="true"><use href="assets/icons.svg#i-person-simple-run"/></svg>
+            <h3>Movement systems</h3>
+            <p>Sprinting, dashing, sliding, wall runs, climbing, double jumps, and custom character controllers.</p>
+          </div>
         </li>
-        <li class="service service--wide service--tint">
-          <svg class="icon service__icon" aria-hidden="true"><use href="assets/icons.svg#i-sword"/></svg>
+        <li class="sv__cell sv--combat">
+          <svg class="icon sv__icon" aria-hidden="true"><use href="assets/icons.svg#i-sword"/></svg>
           <h3>Combat systems</h3>
           <p>Melee and ranged combat, hitboxes, combos, abilities, cooldowns, and server-side validation.</p>
         </li>
-        <li class="service">
-          <svg class="icon service__icon" aria-hidden="true"><use href="assets/icons.svg#i-layout"/></svg>
+        <li class="sv__cell sv__cell--tint sv--ui">
+          <svg class="icon sv__icon" aria-hidden="true"><use href="assets/icons.svg#i-layout"/></svg>
           <h3>UI programming</h3>
           <p>Menus, HUDs, shops, inventories, and tweened transitions wired up to your game.</p>
         </li>
-        <li class="service">
-          <svg class="icon service__icon" aria-hidden="true"><use href="assets/icons.svg#i-floppy-disk"/></svg>
+        <li class="sv__cell sv--data">
+          <svg class="icon sv__icon" aria-hidden="true"><use href="assets/icons.svg#i-floppy-disk"/></svg>
           <h3>Data and progression</h3>
           <p>DataStores, saving, levels, currencies, quests, and leaderboards.</p>
         </li>
-        <li class="service">
-          <svg class="icon service__icon" aria-hidden="true"><use href="assets/icons.svg#i-wrench"/></svg>
-          <h3>Fixes and cleanup</h3>
-          <p>Bug fixes, performance work, and refactoring scripts that grew out of hand.</p>
+        <li class="sv__cell sv__cell--art sv--fix">
+          <img src="assets/img/parasols.webp" width="540" height="542" alt="" loading="lazy">
+          <div class="sv__text">
+            <svg class="icon sv__icon" aria-hidden="true"><use href="assets/icons.svg#i-wrench"/></svg>
+            <h3>Fixes and cleanup</h3>
+            <p>Bug fixes, performance work, and refactoring scripts that grew out of hand.</p>
+          </div>
         </li>
       </ul>
     </section>
 
-    <section class="section wrap reveal" aria-labelledby="pay-title">
-      <h2 class="section__title" id="pay-title">How you can pay</h2>
-      <div class="pay">
-        <div class="pay__item">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-currency-dollar"/></svg>
-          <h3>USD</h3>
-          <p>Quoted per project once the scope is agreed.</p>
-        </div>
-        <div class="pay__item">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-coins"/></svg>
-          <h3>Robux</h3>
-          <p>Same quote, paid in Robux.</p>
-        </div>
-        <div class="pay__item pay__item--accent">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-percent"/></svg>
-          <h3>Percentage</h3>
-          <p>A share of the game's revenue. I'll need to see real potential first, so share as much about the game as you can.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section wrap reveal" aria-labelledby="process-title">
-      <h2 class="section__title" id="process-title">How it works</h2>
-      <ol class="process">
-        <li><strong>Request</strong><span>Send the form below with as much detail as you can.</span></li>
-        <li><strong>Quote</strong><span>We agree on scope, price, and an estimated delivery date on Discord.</span></li>
-        <li><strong>Deposit</strong><span>50% up front, then I start building.</span></li>
-        <li><strong>Build</strong><span>I share progress, and you get your included revisions.</span></li>
-        <li><strong>Deliver</strong><span>Final 50% is paid, then you get the files.</span></li>
-      </ol>
-    </section>
-
-    <section class="section wrap terms-wrap reveal" id="terms" aria-labelledby="terms-title">
-      <div>
-        <h2 class="section__title" id="terms-title">Terms</h2>
-        <p class="terms__note">By commissioning work, you agree to the terms here.</p>
-      </div>
-      <div class="terms">
-        <details open>
-          <summary>Payment<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
-          <ul>
-            <li>50% deposit required before work begins. The remaining 50% is due on completion, before final files are delivered.</li>
-            <li>Deposits are non-refundable once work has started.</li>
-            <li>Full refunds are only available if you cancel before any work begins.</li>
-          </ul>
-        </details>
-        <details>
-          <summary>Scope and revisions<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
-          <ul>
-            <li>Project scope is agreed on before starting. Requests outside the original scope may cost extra.</li>
-            <li>2 free revisions are included per project. Further revisions are billed separately.</li>
-          </ul>
-        </details>
-        <details>
-          <summary>Timeline<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
-          <ul>
-            <li>You'll get an estimated delivery time at the start of each project.</li>
-            <li>Late feedback or replies from you may push back the final delivery date.</li>
-          </ul>
-        </details>
-        <details>
-          <summary>Ownership and credit<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
-          <ul>
-            <li>Final files are yours to use once payment is complete.</li>
-            <li>Credit is appreciated but not required, unless we agree otherwise.</li>
-            <li>I keep the right to show completed work in my portfolio, unless we discuss otherwise.</li>
-          </ul>
-        </details>
-        <details>
-          <summary>Conduct<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
-          <ul>
-            <li>I can decline or cancel a project at my discretion, with a refund of any unused portion of payment.</li>
-            <li>Disrespectful or abusive behavior toward me ends the project immediately, with no refund.</li>
-          </ul>
-        </details>
-      </div>
-    </section>
-
-    <section class="section wrap request reveal" id="request" aria-labelledby="request-title">
-      <div class="request__intro">
-        <h2 class="section__title" id="request-title">Request a commission</h2>
-        <p>The more detail you give, the faster and more accurate the quote. Videos or games that show the feel you want help a lot.</p>
-        <div class="discord">
-          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord-logo"/></svg>
-          <div>
-            <span class="discord__label">Prefer Discord?</span>
-            <button class="discord__copy copy" type="button" data-copy="Ruha.luau">
-              <span class="copy__label">Ruha.luau</span>
-              <svg class="icon copy__icon" aria-hidden="true"><use href="assets/icons.svg#i-copy"/></svg>
-            </button>
+    <!-- Payment: full-bleed painted band with the three options on a frosted sheet -->
+    <section class="pay-band reveal" aria-labelledby="pay-title">
+      <img class="pay-band__art" src="assets/img/blossom-paint.webp" width="900" height="895" alt="" loading="lazy">
+      <div class="wrap">
+        <div class="pay-sheet">
+          <h2 class="c-title" id="pay-title">How you can pay</h2>
+          <div class="pay-opts">
+            <div class="pay-opt">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-currency-dollar"/></svg>
+              <h3>USD</h3>
+              <p>Quoted per project once the scope is agreed.</p>
+            </div>
+            <div class="pay-opt">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-coins"/></svg>
+              <h3>Robux</h3>
+              <p>Same quote, paid in Robux.</p>
+            </div>
+            <div class="pay-opt pay-opt--pct">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-percent"/></svg>
+              <h3>Percentage</h3>
+              <p>A share of the game's revenue. I need to see real potential first, so share as much about the game as you can.</p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
+    <!-- Process: horizontal path of five petals -->
+    <section class="section wrap reveal" aria-labelledby="process-title">
+      <h2 class="c-title" id="process-title">How it works</h2>
+      <ol class="path">
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Request</strong><span>Send the form below with as much detail as you can.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Quote</strong><span>We agree on scope, price, and a delivery estimate on Discord.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Deposit</strong><span>50% up front, then I start building.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Build</strong><span>I share progress, and you get 2 revisions.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Deliver</strong><span>Final 50% is paid, then you get the files.</span></li>
+      </ol>
+    </section>
+
+    <!-- Terms: tall scroll painting beside the accordion -->
+    <section class="section wrap terms-wrap reveal" id="terms" aria-labelledby="terms-title">
+      <div class="terms-art">
+        <img src="assets/img/sakura-scroll.webp" width="640" height="1138" alt="" loading="lazy">
+      </div>
+      <div>
+        <h2 class="c-title" id="terms-title">Terms</h2>
+        <p class="terms__note">By commissioning work, you agree to the terms here.</p>
+        <div class="terms">
+          <details open>
+            <summary>Payment<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
+            <ul>
+              <li>50% deposit required before work begins. The remaining 50% is due on completion, before final files are delivered.</li>
+              <li>Deposits are non-refundable once work has started.</li>
+              <li>Full refunds are only available if you cancel before any work begins.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Scope and revisions<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
+            <ul>
+              <li>Project scope is agreed on before starting. Requests outside the original scope may cost extra.</li>
+              <li>2 free revisions are included per project. Further revisions are billed separately.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Timeline<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
+            <ul>
+              <li>You'll get an estimated delivery time at the start of each project.</li>
+              <li>Late feedback or replies from you may push back the final delivery date.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Ownership and credit<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
+            <ul>
+              <li>Final files are yours to use once payment is complete.</li>
+              <li>Credit is appreciated but not required, unless we agree otherwise.</li>
+              <li>I keep the right to show completed work in my portfolio, unless we discuss otherwise.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Conduct<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
+            <ul>
+              <li>I can decline or cancel a project at my discretion, with a refund of any unused portion of payment.</li>
+              <li>Disrespectful or abusive behavior toward me ends the project immediately, with no refund.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Request: blossom macro washes behind a frosted form sheet -->
+    <section class="req reveal" id="request" aria-labelledby="request-title">
+      <img class="req__art" src="assets/img/blossom-macro.webp" width="1000" height="1000" alt="" loading="lazy">
+      <div class="wrap req__inner">
+        <div class="req__intro">
+          <h2 class="c-title" id="request-title">Request a commission</h2>
+          <p>The more detail you give, the faster and more accurate the quote. Videos or games that show the feel you want help a lot.</p>
+          <div class="discord">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord-logo"/></svg>
+            <div>
+              <span class="discord__label">Prefer Discord?</span>
+              <button class="discord__copy copy" type="button" data-copy="Ruha.luau">
+                <span class="copy__label">Ruha.luau</span>
+                <svg class="icon copy__icon" aria-hidden="true"><use href="assets/icons.svg#i-copy"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="req__sheet">
       <!--
         Formspree setup: create a form at https://formspree.io, then replace
         YOUR_FORM_ID below with the ID it gives you (the part after /f/).
@@ -296,11 +328,14 @@
         <h3>Request sent</h3>
         <p>Thanks. I'll reach out on Discord, so make sure you can receive DMs or friend requests from <strong>Ruha.luau</strong>.</p>
       </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="footer wrap">
     <p>&copy; <span id="year">2026</span> Joshua Mathias</p>
+    <p class="footer__credit">Background artwork belongs to its original artists.</p>
   </footer>
 
   <script src="assets/main.js" defer></script>
