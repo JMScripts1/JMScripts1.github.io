@@ -307,7 +307,13 @@
         </fieldset>
 
         <div class="field">
-          <label class="agree prio-opt"><input type="checkbox" name="priority" value="yes"><span><strong>Priority</strong> (+30%): put my project at the front of the waitlist. See the <a href="#terms">priority terms</a>.</span></label>
+          <label class="prio-card">
+            <input type="checkbox" name="priority" value="yes">
+            <span class="prio-card__text">
+              <span class="prio-card__title"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-lightning"/></svg>Priority <span class="prio-card__fee">+30%</span></span>
+              <span>Put my project at the front of the waitlist. <a href="#terms">Priority terms</a></span>
+            </span>
+          </label>
         </div>
 
         <div class="field" data-show-for="USD Robux" hidden>

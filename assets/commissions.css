@@ -236,7 +236,8 @@
 }
 .req__inner { display: grid; grid-template-columns: 1fr 1.55fr; gap: 56px; align-items: start; }
 .req__intro { position: sticky; top: 96px; }
-.req__intro > p { color: color-mix(in srgb, var(--text) 75%, var(--muted)); max-width: 40ch; margin-top: -16px; }
+.req__intro > p { color: color-mix(in srgb, var(--text) 75%, var(--muted)); max-width: 40ch; }
+.req__intro > .c-title + p { margin-top: -16px; }
 .req__sheet {
   padding: 36px; border-radius: var(--r-lg);
   background: color-mix(in srgb, var(--bg) 88%, transparent); border: 1px solid var(--sheet-line);
@@ -313,7 +314,45 @@
 .pct .field__help { color: var(--accent-soft-ink); opacity: 0.85; }
 
 .agree { display: flex; gap: 12px; align-items: flex-start; font-weight: 400 !important; cursor: pointer; }
-.agree input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--accent); flex: none; }
+
+/* Custom checkboxes: rounded square that fills with the accent and shows a tick */
+.agree input, .prio-card input {
+  appearance: none; -webkit-appearance: none; flex: none;
+  width: 20px; height: 20px; margin: 1px 0 0; border-radius: 6px; cursor: pointer;
+  display: grid; place-content: center;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 50%, var(--line));
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  transition: background-color 0.2s, border-color 0.2s, transform 0.15s var(--ease);
+}
+.agree input::before, .prio-card input::before {
+  content: ""; width: 9px; height: 5px; margin-top: -2px;
+  border-left: 2px solid var(--accent-ink); border-bottom: 2px solid var(--accent-ink);
+  transform: rotate(-45deg) scale(0.4); opacity: 0;
+  transition: transform 0.2s var(--ease), opacity 0.15s;
+}
+.agree input:checked, .prio-card input:checked { background: var(--accent); border-color: var(--accent); }
+.agree input:checked::before, .prio-card input:checked::before { opacity: 1; transform: rotate(-45deg) scale(1); }
+.agree input:active, .prio-card input:active { transform: scale(0.92); }
+.agree input:focus-visible, .prio-card input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Priority option as a selectable card */
+.prio-card {
+  display: flex; gap: 14px; align-items: flex-start; cursor: pointer;
+  padding: 16px 18px; border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  transition: background-color 0.25s, border-color 0.25s;
+}
+.prio-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.prio-card:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
+.prio-card__text { display: grid; gap: 4px; font-size: 0.9375rem; color: color-mix(in srgb, var(--text) 75%, var(--muted)); }
+.prio-card__title { display: flex; align-items: center; gap: 6px; color: var(--text); font-weight: 600; font-size: 1rem; }
+.prio-card__title .icon { color: var(--accent); }
+.prio-card__fee {
+  margin-left: 2px; padding: 2px 8px; border-radius: var(--pill);
+  background: var(--accent); color: var(--accent-ink); font: 600 0.75rem/1.4 var(--sans);
+}
+.prio-card a { color: var(--accent); font-weight: 500; }
 .agree a { color: var(--accent); }
 
 .form__submit { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
@@ -421,7 +460,6 @@
 .qprio__head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
 .qprio__head .icon { color: var(--accent); }
 .qprio strong { font-weight: 600; }
-.prio-opt strong { color: var(--accent); }
 
 /* ---------- Completed work ---------- */
 .work-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
