@@ -16,28 +16,27 @@ if ("IntersectionObserver" in window) {
   reveals.forEach((el) => el.classList.add("is-in"));
 }
 
-// Copy email to clipboard, with a short confirmation.
-const copyBtn = document.querySelector(".copy");
-if (copyBtn) {
-  const label = copyBtn.querySelector(".copy__label");
-  const icon = copyBtn.querySelector(".copy__icon use");
+// Copy buttons (email, Discord username), with a short confirmation.
+document.querySelectorAll(".copy").forEach((btn) => {
+  const label = btn.querySelector(".copy__label");
+  const icon = btn.querySelector(".copy__icon use");
   const original = label.textContent;
   let timer;
-  copyBtn.addEventListener("click", async () => {
+  btn.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText(copyBtn.dataset.copy);
-      label.textContent = "Copied";
-      icon.setAttribute("href", "assets/icons.svg#i-check");
-      copyBtn.dataset.state = "done";
+      await navigator.clipboard.writeText(btn.dataset.copy);
     } catch {
-      window.location.href = "mailto:" + copyBtn.dataset.copy;
+      if (btn.dataset.copy.includes("@")) window.location.href = "mailto:" + btn.dataset.copy;
       return;
     }
+    label.textContent = "Copied";
+    icon.setAttribute("href", "assets/icons.svg#i-check");
+    btn.dataset.state = "done";
     clearTimeout(timer);
     timer = setTimeout(() => {
       label.textContent = original;
       icon.setAttribute("href", "assets/icons.svg#i-copy");
-      delete copyBtn.dataset.state;
+      delete btn.dataset.state;
     }, 1800);
   });
-}
+});
