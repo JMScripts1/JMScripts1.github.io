@@ -20,10 +20,12 @@
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/parasols.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/home.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
-<body>
+<body class="art home">
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="nav">
@@ -41,7 +43,10 @@
   </header>
 
   <main id="main">
-    <section class="hero wrap" id="top">
+    <section class="hh" id="top">
+      <img class="hh__art" src="assets/img/parasols.webp" width="540" height="542" alt="" fetchpriority="high">
+      <canvas class="hh__canvas" aria-hidden="true"></canvas>
+      <div class="hero wrap">
       <div class="hero__copy">
         <h1 class="hero__title">Game developer and backend builder.</h1>
         <p class="hero__sub">I'm Joshua, a CS student at Ontario Tech building games in Luau and backend tools in Python and SQL.</p>
@@ -73,6 +78,14 @@
         </ul>
         </aside>
       </div>
+      </div>
+      <p class="hud" aria-hidden="true">
+        <span>petal engine</span>
+        <span><b data-hud="fps">60</b> fps</span>
+        <span><b data-hud="count">0</b> petals</span>
+        <span>wind <b data-hud="wind">+0.35</b></span>
+        <span class="hud__hint">move or click to stir</span>
+      </p>
     </section>
 
     <section class="section wrap reveal" id="projects" aria-labelledby="projects-title">
@@ -134,6 +147,7 @@
         </article>
 
         <article class="tile tile--accent">
+          <img class="tile__art" src="assets/img/blossom-paint.webp" width="900" height="895" alt="" loading="lazy">
           <svg class="icon tile__glyph" aria-hidden="true"><use href="assets/icons.svg#i-game-controller"/></svg>
           <div>
             <h3 class="tile__title">Roblox games</h3>
@@ -189,6 +203,7 @@
 
     <section class="section wrap reveal" aria-labelledby="band-title">
       <div class="band">
+        <img class="band__art" src="assets/img/sakura-branch.webp" width="1200" height="659" alt="" loading="lazy">
         <div>
           <h2 id="band-title">Open for Roblox scripting commissions</h2>
           <p>Movement, combat, UI, and game systems in Luau. Paid in USD, Robux, or a percentage.</p>
@@ -197,7 +212,9 @@
       </div>
     </section>
 
-    <section class="section wrap contact reveal" id="contact" aria-labelledby="contact-title">
+    <section class="contact-band reveal" id="contact" aria-labelledby="contact-title">
+      <img class="contact-band__art" src="assets/img/petal-figure.webp" width="736" height="749" alt="" loading="lazy">
+      <div class="wrap contact">
       <h2 class="contact__title" id="contact-title">Have a question or a role in mind?</h2>
       <p class="contact__sub">Happy to talk about Luau, Python and SQL, or a PC that won't boot.</p>
       <div class="contact__actions">
@@ -215,13 +232,16 @@
         <li><a href="https://github.com/JMScripts1" target="_blank" rel="me noopener">
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-github-logo"/></svg>GitHub</a></li>
       </ul>
+      </div>
     </section>
   </main>
 
   <footer class="footer wrap">
     <p>&copy; <span id="year">2026</span> Joshua Mathias</p>
+    <p class="footer__credit">Background artwork belongs to its original artists.</p>
   </footer>
 
   <script src="assets/main.js" defer></script>
+  <script src="assets/engine.js" defer></script>
 </body>
 </html>
