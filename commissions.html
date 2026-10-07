@@ -46,7 +46,7 @@
       <img class="ch__art" src="assets/img/sakura-branch.webp" width="1200" height="659" alt="" fetchpriority="high">
       <div class="wrap ch__inner">
         <div class="ch__copy">
-          <p class="status"><span class="status__dot" aria-hidden="true"></span>Open for commissions</p>
+          <p class="status" data-queue-status><span class="status__dot" aria-hidden="true"></span><span data-queue-status-text>Roblox scripting commissions</span></p>
           <h1 class="ch__title">Roblox scripting, built to <em>feel</em> right.</h1>
           <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Tell me what you're making.</p>
           <div class="hero__ctas">
@@ -58,6 +58,14 @@
           <img src="assets/avatar.jpg" width="460" height="460" alt="Joshua's profile picture: an anime-style illustration in soft pink and crimson">
           <figcaption><strong>Ruha.luau</strong><span>on Discord</span></figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- Queue: filled in from assets/queue-data.js by assets/queue.js -->
+    <section class="section wrap reveal" id="queue" aria-labelledby="queue-title">
+      <h2 class="c-title" id="queue-title">Current queue</h2>
+      <div class="queue" id="queue-board" aria-live="polite">
+        <p class="queue__fallback">Message <strong>Ruha.luau</strong> on Discord for current availability.</p>
       </div>
     </section>
 
@@ -195,6 +203,7 @@
         <div class="req__intro">
           <h2 class="c-title" id="request-title">Request a commission</h2>
           <p>The more detail you give, the faster and more accurate the quote. Videos or games that show the feel you want help a lot.</p>
+          <p class="req__estimate">Estimated start: <strong data-queue-estimate>ask on Discord</strong> <a href="#queue">See queue</a></p>
           <div class="discord">
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord-logo"/></svg>
             <div>
@@ -336,6 +345,8 @@
   </footer>
 
   <script src="assets/main.js" defer></script>
+  <script src="assets/queue-data.js" defer></script>
+  <script src="assets/queue.js" defer></script>
   <script src="assets/commissions.js" defer></script>
 </body>
 </html>

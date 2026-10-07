@@ -135,3 +135,6 @@
 }
 
 .footer__credit { margin-top: 6px; font-size: 0.8125rem; opacity: 0.8; }
+
+.home .band__eta { margin-top: 10px; font-size: 0.9375rem; }
+.home .band__eta strong { color: var(--accent); font-weight: 600; }
