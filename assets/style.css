@@ -13,17 +13,18 @@
 }
 
 :root {
-  --bg: #f6f6f7;
-  --surface: #ececee;
-  --surface-2: #e2e2e6;
-  --text: #18181b;
-  --muted: #55555e;
-  --line: #d6d6db;
-  --accent: #b9481a;
+  /* Palette sampled from the profile picture: blush whites, mauve greys, crimson-rose, plum-black */
+  --bg: #fbf7f8;
+  --surface: #f3e8ec;
+  --surface-2: #eadbe1;
+  --text: #24101b;
+  --muted: #6e5462;
+  --line: #e2d0d7;
+  --accent: #9b3760;
   --accent-ink: #ffffff;
-  --accent-soft: #f6e3d9;
-  --accent-soft-ink: #6e2a0d;
-  --shadow: 0 1px 2px rgb(24 24 27 / 0.06), 0 8px 24px -12px rgb(24 24 27 / 0.12);
+  --accent-soft: #f5dfe7;
+  --accent-soft-ink: #6b1d3d;
+  --shadow: 0 1px 2px rgb(110 30 70 / 0.06), 0 12px 32px -16px rgb(110 30 70 / 0.22);
 
   --radius: 16px;
   --pill: 999px;
@@ -36,17 +37,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0e0e10;
-    --surface: #18181b;
-    --surface-2: #222226;
-    --text: #ededef;
-    --muted: #a1a1aa;
-    --line: #2c2c31;
-    --accent: #f08a52;
-    --accent-ink: #1c0c03;
-    --accent-soft: #2a1810;
-    --accent-soft-ink: #f6c3a6;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+    --bg: #140910;
+    --surface: #1f111a;
+    --surface-2: #2a1822;
+    --text: #f6eaee;
+    --muted: #bca4af;
+    --line: #3a2430;
+    --accent: #e68aac;
+    --accent-ink: #2a0716;
+    --accent-soft: #3a1727;
+    --accent-soft-ink: #f4c3d4;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -16px rgb(0 0 0 / 0.7);
   }
 }
 
@@ -115,8 +116,8 @@ a { color: inherit; }
 
 /* Hero */
 .hero {
-  display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: end;
-  padding-top: 96px; padding-bottom: 88px;
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: center;
+  padding-top: 80px; padding-bottom: 88px;
 }
 .hero__title {
   font-size: clamp(2.5rem, 5.2vw, 4.25rem);
@@ -126,17 +127,29 @@ a { color: inherit; }
 .hero__sub { margin-top: 24px; font-size: 1.125rem; color: var(--muted); max-width: 44ch; }
 .hero__ctas { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
 
-.now {
-  background: var(--surface); border-radius: var(--radius);
-  padding: 24px; box-shadow: var(--shadow);
+.hero__side { position: relative; padding-bottom: 8px; }
+.hero__avatar {
+  display: block; width: 100%; height: auto; max-width: 380px; aspect-ratio: 1; margin-left: auto;
+  object-fit: cover; border-radius: var(--radius);
+  background: var(--surface);
 }
+.now {
+  position: relative; margin-top: -88px; margin-right: 56px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 24px; box-shadow: var(--shadow);
+}
+@media (prefers-reduced-transparency: reduce) { .now { background: var(--surface); backdrop-filter: none; } }
 .now__title { font: 500 0.8125rem/1 var(--mono); color: var(--muted); margin-bottom: 18px; }
 .now__list { display: grid; gap: 16px; }
 .now__list li { display: flex; gap: 12px; align-items: flex-start; }
 .now__list .icon { color: var(--accent); margin-top: 0.2em; }
 
 @media (max-width: 767px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 56px; padding-bottom: 56px; }
+  .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; padding-bottom: 56px; }
+  .hero__avatar { max-width: 260px; margin-left: 0; }
+  .now { margin-top: -56px; margin-right: 0; margin-left: 24px; }
 }
 
 /* Sections */
@@ -244,12 +257,13 @@ a { color: inherit; }
 
 /* Motion: hero enters in sequence, sections fade up once as they scroll in */
 @media (prefers-reduced-motion: no-preference) {
-  .hero__copy > *, .now {
+  .hero__copy > *, .hero__avatar, .now {
     animation: rise 0.8s var(--ease) both;
   }
   .hero__sub { animation-delay: 0.08s; }
   .hero__ctas { animation-delay: 0.16s; }
-  .now { animation-delay: 0.26s; }
+  .hero__avatar { animation-delay: 0.2s; }
+  .now { animation-delay: 0.32s; }
 
   .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .js .reveal.is-in { opacity: 1; transform: none; }
