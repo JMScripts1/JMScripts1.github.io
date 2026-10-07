@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joshua Mathias</title>
+  <meta name="description" content="Computer science student at Ontario Tech building games in Luau and backend tools in Python and SQL.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#b9481a">
+
+  <!-- Link previews (Discord, LinkedIn, iMessage, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jmscripts1.github.io/">
+  <meta property="og:title" content="Joshua Mathias">
+  <meta property="og:description" content="CS student at Ontario Tech. Games in Luau, backend tools in Python and SQL.">
+  <meta property="og:image" content="https://jmscripts1.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__name" href="#top">Joshua Mathias</a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <div class="hero__copy">
+        <h1 class="hero__title">Game developer and backend builder.</h1>
+        <p class="hero__sub">I'm Joshua, a CS student at Ontario Tech building games in Luau and backend tools in Python and SQL.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="#projects">View projects</a>
+          <a class="btn btn--ghost" href="https://github.com/JMScripts1" rel="me noopener" target="_blank">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-github-logo"/></svg>GitHub
+          </a>
+        </div>
+      </div>
+
+      <aside class="now" aria-labelledby="now-title">
+        <!-- TODO: optional portrait photo of Joshua here, 800x800 -->
+        <h2 class="now__title" id="now-title">Right now</h2>
+        <ul class="now__list">
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-game-controller"/></svg>
+            <span>Building games in Roblox Studio</span>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chart-line-up"/></svg>
+            <span>Just shipped game-deal-tracker, a PC game price tracker</span>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-cpu"/></svg>
+            <span>Taking Data Structures and Linear Algebra</span>
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section wrap reveal" id="projects" aria-labelledby="projects-title">
+      <h2 class="section__title" id="projects-title">Projects</h2>
+
+      <div class="bento">
+        <article class="tile tile--feature">
+          <div class="tile__head">
+            <h3 class="tile__title">OpsWatch</h3>
+            <a class="tile__link" href="https://github.com/JMScripts1/opswatch" target="_blank" rel="noopener">
+              Source<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg>
+            </a>
+          </div>
+          <p class="tile__body">Self-hosted health monitoring for small IT environments, modeled on the tools managed service providers use every day.</p>
+
+          <ol class="flow" aria-label="How OpsWatch works">
+            <li class="flow__step">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-desktop-tower"/></svg>
+              <strong>Agents check</strong>
+              <span>Disk, services, backups, TLS certs, OS updates</span>
+            </li>
+            <li class="flow__step">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-database"/></svg>
+              <strong>Server stores</strong>
+              <span>Agents push results, no inbound ports needed</span>
+            </li>
+            <li class="flow__step">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-ticket"/></svg>
+              <strong>Tickets track</strong>
+              <span>One ticket per problem, closed once it clears</span>
+            </li>
+            <li class="flow__step">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-bell-ringing"/></svg>
+              <strong>Alerts send</strong>
+              <span>Discord or Slack, plus a daily summary</span>
+            </li>
+          </ol>
+
+          <ul class="chips" aria-label="Built with">
+            <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Docker</li><li>GitHub Actions</li>
+          </ul>
+        </article>
+
+        <article class="tile tile--tall">
+          <div class="tile__head">
+            <h3 class="tile__title">game-deal-tracker</h3>
+            <a class="tile__link" href="https://github.com/JMScripts1/game-deal-tracker" target="_blank" rel="noopener">
+              Source<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg>
+            </a>
+          </div>
+          <p class="tile__body">A Python pipeline pulls PC game prices from a public REST API and saves timestamped snapshots to SQLite.</p>
+          <dl class="facts">
+            <div><dt>Storage</dt><dd>3-table SQLite schema</dd></div>
+            <div><dt>Dashboard</dt><dd>Top deals, store comparisons, price trends</dd></div>
+          </dl>
+          <ul class="chips" aria-label="Built with">
+            <li>Python</li><li>SQL</li><li>SQLite</li><li>Plotly Dash</li>
+          </ul>
+        </article>
+
+        <article class="tile tile--accent">
+          <svg class="icon tile__glyph" aria-hidden="true"><use href="assets/icons.svg#i-game-controller"/></svg>
+          <div>
+            <h3 class="tile__title">Roblox games</h3>
+            <p class="tile__body">In progress in Roblox Studio with Luau. They'll show up here once they ship.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap about reveal" id="about" aria-labelledby="about-title">
+      <div class="about__text">
+        <h2 class="section__title" id="about-title">About</h2>
+        <p>I split my time between building games in Roblox Studio and backend work: data pipelines, SQL, and dashboards.</p>
+        <p>Before university I spent a year in IT support at a managed service provider, imaging around 100 machines and supporting about 40 small businesses. OpsWatch grew out of that job.</p>
+      </div>
+
+      <ol class="timeline" aria-label="Education and experience">
+        <li>
+          <span class="timeline__when">Class of 2029</span>
+          <strong>Ontario Tech University</strong>
+          <span>Computer Science</span>
+        </li>
+        <li>
+          <span class="timeline__when">1 year</span>
+          <strong>IT support, managed service provider</strong>
+          <span>Imaging, user support, small-business networks</span>
+        </li>
+        <li>
+          <span class="timeline__when">RP4K</span>
+          <strong>Game programming</strong>
+          <span>C++ and Unreal Engine</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section wrap reveal" id="tools" aria-labelledby="tools-title">
+      <h2 class="section__title" id="tools-title">Tools</h2>
+      <div class="stack">
+        <div class="stack__row">
+          <h3>Game dev</h3>
+          <ul class="chips chips--lg"><li>Luau</li><li>Roblox Studio</li><li>C++</li><li>Unreal Engine</li></ul>
+        </div>
+        <div class="stack__row">
+          <h3>Backend and data</h3>
+          <ul class="chips chips--lg"><li>Python</li><li>SQL</li><li>SQLite</li><li>Pandas</li><li>Plotly Dash</li><li>Java</li><li>HTML and CSS</li></ul>
+        </div>
+        <div class="stack__row">
+          <h3>Systems</h3>
+          <ul class="chips chips--lg"><li>Git</li><li>Linux</li><li>Windows Server</li><li>Microsoft 365</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap contact reveal" id="contact" aria-labelledby="contact-title">
+      <h2 class="contact__title" id="contact-title">Have a question or a role in mind?</h2>
+      <p class="contact__sub">Happy to talk about Luau, Python and SQL, or a PC that won't boot.</p>
+      <div class="contact__actions">
+        <a class="btn btn--primary" href="mailto:joshmwork12@gmail.com">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-envelope-simple"/></svg>Email me
+        </a>
+        <button class="btn btn--ghost copy" type="button" data-copy="joshmwork12@gmail.com">
+          <svg class="icon copy__icon" aria-hidden="true"><use href="assets/icons.svg#i-copy"/></svg>
+          <span class="copy__label">joshmwork12@gmail.com</span>
+        </button>
+      </div>
+      <ul class="socials">
+        <li><a href="https://www.linkedin.com/in/joshua-mathias-9b759b327/" target="_blank" rel="me noopener">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-linkedin-logo"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/JMScripts1" target="_blank" rel="me noopener">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-github-logo"/></svg>GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>&copy; <span id="year">2026</span> Joshua Mathias</p>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
