@@ -22,6 +22,8 @@
 
   client = what to show publicly. Use "Private" to hide who it's for.
   progress = optional, 0 to 100, only shown for in-progress work.
+  priority = add  priority: true  to a project when the client paid for
+  priority. It gets a "Priority" tag and jumps ahead of the normal waitlist.
   ============================================================
 */
 window.COMMISSIONS = {
@@ -31,6 +33,10 @@ window.COMMISSIONS = {
   // "auto" works it out from the projects below.
   // "closed" shows that you aren't taking requests at all right now.
   status: "auto",
+
+  // Priority option shown in the queue. Set available to false to hide it.
+  // fee is the extra cost as text, e.g. "+30%" or "$25". Leave "" to say "an extra fee".
+  priority: { available: true, fee: "" },
 
   // Optional short message shown with the queue. Leave "" for none.
   note: "",
@@ -42,5 +48,6 @@ window.COMMISSIONS = {
     // Examples (remove the two slashes at the start of a line to use it):
     // { title: "Combo melee system", type: "Combat", client: "Private", stage: "in-progress", progress: 60, eta: "2026-10-20" },
     // { title: "Shop and inventory UI", type: "UI", client: "Private", stage: "queued", eta: "2026-11-02" },
+    // { title: "Boss fight AI", type: "Combat", client: "Private", stage: "queued", priority: true, eta: "2026-10-30" },
   ],
 };

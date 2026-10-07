@@ -107,6 +107,16 @@
       </ul>
     </section>
 
+    <!-- Completed work: filled in from assets/work-data.js by assets/work.js, hidden while empty -->
+    <section class="section wrap" id="work" aria-labelledby="work-title" hidden>
+      <div class="work-head">
+        <h2 class="c-title" id="work-title">Completed work</h2>
+        <p class="work-count" id="work-count"></p>
+      </div>
+      <div class="work-filters" id="work-filters" role="group" aria-label="Filter by type" hidden></div>
+      <div class="work-grid" id="work-grid"></div>
+    </section>
+
     <!-- Payment: full-bleed painted band with the three options on a frosted sheet -->
     <section class="pay-band reveal" aria-labelledby="pay-title">
       <img class="pay-band__art" src="assets/img/blossom-paint.webp" width="900" height="895" alt="" loading="lazy">
@@ -284,6 +294,10 @@
           <p class="field__error" id="f-payment-err"></p>
         </fieldset>
 
+        <div class="field">
+          <label class="agree prio-opt"><input type="checkbox" name="priority" value="yes"><span><strong>Priority</strong> (extra fee): put my project at the front of the waitlist.</span></label>
+        </div>
+
         <div class="field" data-show-for="USD Robux" hidden>
           <label for="f-budget">Budget</label>
           <input id="f-budget" name="budget" type="text" aria-describedby="f-budget-help">
@@ -347,6 +361,8 @@
   <script src="assets/main.js" defer></script>
   <script src="assets/queue-data.js" defer></script>
   <script src="assets/queue.js" defer></script>
+  <script src="assets/work-data.js" defer></script>
+  <script src="assets/work.js" defer></script>
   <script src="assets/commissions.js" defer></script>
 </body>
 </html>

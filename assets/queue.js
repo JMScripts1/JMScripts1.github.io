@@ -20,20 +20,23 @@
 
   const projects = data.projects.filter((p) => p && typeof p === "object");
   const active = projects.filter((p) => p.stage === "in-progress" || p.stage === "review");
-  const queued = projects.filter((p) => p.stage === "queued");
+  // Paid priority jumps the waitlist; otherwise keep the order Joshua listed them in.
+  const queued = projects.filter((p) => p.stage === "queued")
+    .map((p, i) => ({ p, i })).sort((a, b) => (!!b.p.priority - !!a.p.priority) || a.i - b.i).map((x) => x.p);
+  const prio = data.priority && data.priority.available !== false ? data.priority : null;
   const closed = data.status === "closed";
   const free = Math.max(0, slots - active.length);
 
   // Estimate when a new request could start: every slot frees up at its project's
   // eta (overdue projects count as finishing today), queued projects take the
   // earliest slot in order, and the new request gets the next one after that.
-  function estimateStart() {
+  function estimateStart(ahead = queued) {
     const ends = active.map((p) => {
       const d = parseDate(p.eta);
       return d ? Math.max(d.getTime(), today.getTime()) : Infinity;
     });
     for (let i = 0; i < free; i++) ends.push(today.getTime());
-    for (const q of queued) {
+    for (const q of ahead) {
       ends.sort((a, b) => a - b);
       const start = ends.shift();
       if (start === undefined || start === Infinity) return null;
@@ -46,6 +49,8 @@
   }
 
   const start = closed ? null : estimateStart();
+  // A priority request only waits behind other priority work.
+  const prioStart = closed || !prio ? null : estimateStart(queued.filter((q) => q.priority));
   const startsNow = start && start.getTime() <= today.getTime();
   const state = closed ? "closed" : startsNow ? "open" : "waitlist";
 
@@ -98,6 +103,7 @@
         <div class="slot__top">
           ${icon(iconFor(p.type), "icon slot__icon")}
           <span class="slot__stage">${p.stage === "review" ? "Waiting on client feedback" : "In progress"}</span>
+          ${p.priority ? `<span class="prio-tag">${icon("lightning")}Priority</span>` : ""}
         </div>
         <h3 class="slot__title">${esc(p.title || "Commission")}</h3>
         <p class="slot__meta">${esc([p.type, p.client === "Private" ? "Private client" : p.client].filter(Boolean).join(" · "))}</p>
@@ -117,9 +123,17 @@
   const waitlist = queued.length
     ? `<div class="waitlist">
         <h3>Waitlist <span>${plural(queued.length, "project")} booked</span></h3>
-        <ol>${queued.map((q) => `<li>${icon(iconFor(q.type))}<span><strong>${esc(q.title || "Commission")}</strong> ${esc(q.type || "")}</span></li>`).join("")}</ol>
+        <ol>${queued.map((q) => `<li${q.priority ? ' class="is-prio"' : ""}>${icon(q.priority ? "lightning" : iconFor(q.type))}<span><strong>${esc(q.title || "Commission")}</strong> ${q.priority ? "Priority" : esc(q.type || "")}</span></li>`).join("")}</ol>
       </div>`
     : "";
+
+  const fee = prio && String(prio.fee || "").trim() ? `for ${esc(String(prio.fee).trim())}` : "for an extra fee";
+  const prioSooner = prioStart && start && prioStart.getTime() < start.getTime();
+  const prioBlock = prio && !closed && !startsNow ? `
+      <div class="qprio">
+        <p class="qprio__head">${icon("lightning")}<strong>Need it sooner?</strong></p>
+        <p>Priority puts your project at the front of the waitlist ${fee}.${prioSooner ? ` Estimated start with priority: <strong>${prioStart.getTime() <= today.getTime() ? "right away" : "around " + fmt(prioStart)}</strong>.` : ""}</p>
+      </div>` : "";
 
   const updated = parseDate(data.updated);
   root.innerHTML = `
@@ -127,6 +141,7 @@
       <p class="qsum__label">Estimated start for a new request</p>
       <p class="qsum__value">${esc(estimateText)}</p>
       <p class="qsum__detail">${closed ? "Message me on Discord if you'd like a heads-up when I reopen." : `${active.length} of ${slots} slots in use${queued.length ? `, ${plural(queued.length, "project")} waiting` : ""}.`}</p>
+      ${prioBlock}
       ${data.note ? `<p class="qsum__note">${esc(data.note)}</p>` : ""}
       <p class="qsum__updated">Estimate based on current projects${updated ? `. Updated ${fmt(updated)}.` : "."}</p>
     </div>
