@@ -36,7 +36,7 @@ window.COMMISSIONS = {
 
   // Priority option shown in the queue. Set available to false to hide it.
   // fee is the extra cost as text, e.g. "+30%" or "$25". Leave "" to say "an extra fee".
-  priority: { available: true, fee: "" },
+  priority: { available: true, fee: "+30% of the quote" },
 
   // Optional short message shown with the queue. Leave "" for none.
   note: "",
