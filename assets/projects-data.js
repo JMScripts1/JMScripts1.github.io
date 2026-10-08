@@ -107,7 +107,7 @@ window.PROJECTS = [
     art: "assets/img/blossom-macro.webp",
     links: [{ label: "Source", url: "https://github.com/JMScripts1/Roblox-Inventory-System" }],
     roadmap: [
-      { title: "Data layer", text: "Profile template and saving through ProfileStore" },
+      { title: "Data layer", text: "Profile template and saving through ProfileStore", done: true },
       { title: "Inventory API", text: "Public add, remove and has calls, plus an equip signal" },
       { title: "Shop", text: "Buy and sell-back, every request validated" },
       { title: "Placeholder UI", text: "24-slot grid and equipment slots" },
