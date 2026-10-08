@@ -178,7 +178,7 @@
   border-radius: 50% 0 50% 50%; transform: rotate(-45deg);
   background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
 }
-.path li:first-child .path__mark { background: var(--accent); border-color: var(--accent); }
+.path li:first-child .path__mark { background: var(--accent); }
 .path strong { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.015em; }
 .path li > span:last-child { color: var(--muted); font-size: 0.9375rem; }
 @media (max-width: 899px) {
@@ -187,13 +187,32 @@
     background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 15%, var(--line))); }
   .path__mark { position: absolute; left: -44px; top: 0; margin: 0; }
 }
+/* Reveal: the line draws through the steps and each petal blooms as the line reaches it */
+.path li:nth-child(2) { --d: 0.3s; }
+.path li:nth-child(3) { --d: 0.6s; }
+.path li:nth-child(4) { --d: 0.9s; }
+.path li:nth-child(5) { --d: 1.2s; }
 @media (prefers-reduced-motion: no-preference) {
+  .js .path::before { transform: scaleX(0); transform-origin: left center; transition: transform 1.5s cubic-bezier(0.4, 0, 0.6, 1) 0.15s; }
+  .js .reveal.is-in .path::before { transform: none; }
   .js .path li { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-  .js .reveal.is-in .path li { opacity: 1; transform: none; }
-  .js .reveal.is-in .path li:nth-child(2) { transition-delay: 0.08s; }
-  .js .reveal.is-in .path li:nth-child(3) { transition-delay: 0.16s; }
-  .js .reveal.is-in .path li:nth-child(4) { transition-delay: 0.24s; }
-  .js .reveal.is-in .path li:nth-child(5) { transition-delay: 0.32s; }
+  .js .reveal.is-in .path li { opacity: 1; transform: none; transition-delay: calc(var(--d, 0s) + 0.1s); }
+  .js .path__mark { transform: rotate(-45deg) scale(0); }
+  .js .reveal.is-in .path__mark { animation: petal-bloom 0.9s var(--ease) calc(var(--d, 0s) + 0.15s) both; }
+  .js .reveal.is-in .path li:first-child .path__mark { animation-name: petal-bloom-first; }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  .js .path::before { transform: scaleY(0); transform-origin: center top; }
+}
+@keyframes petal-bloom {
+  0% { transform: rotate(-45deg) scale(0); background: var(--accent); }
+  45% { transform: rotate(-45deg) scale(1.18); background: var(--accent); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
+@keyframes petal-bloom-first {
+  0% { transform: rotate(-45deg) scale(0); }
+  45% { transform: rotate(-45deg) scale(1.18); }
+  100% { transform: rotate(-45deg) scale(1); }
 }
 
 /* ---------- Terms ---------- */
@@ -332,7 +351,7 @@
   transform: rotate(-45deg) scale(0.4); opacity: 0;
   transition: transform 0.2s var(--ease), opacity 0.15s;
 }
-.agree input:checked, .prio-card input:checked { background: var(--accent); border-color: var(--accent); }
+.agree input:checked, .prio-card input:checked { background: var(--accent); }
 .agree input:checked::before, .prio-card input:checked::before { opacity: 1; transform: rotate(-45deg) scale(1); }
 .agree input:active, .prio-card input:active { transform: scale(0.92); }
 .agree input:focus-visible, .prio-card input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
