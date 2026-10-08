@@ -9,7 +9,7 @@
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   // Web links, files in the site, or another page of the site (e.g. "commissions.html#work").
   const safeUrl = (u) => { const s = String(u || "").trim(); return /^(https?:\/\/|assets\/|[\w-]+\.html(#[\w-]+)?$)/i.test(s) ? s : ""; };
-  const ICONS = new Set(["desktop-tower", "database", "ticket", "bell-ringing", "chart-line-up", "cpu", "code", "game-controller", "wrench", "lightning"]);
+  const ICONS = new Set(["desktop-tower", "database", "ticket", "bell-ringing", "chart-line-up", "cpu", "code", "game-controller", "wrench", "lightning", "check-circle", "clock-countdown"]);
   const icon = (name, cls = "icon") => `<svg class="${cls}" aria-hidden="true"><use href="assets/icons.svg#i-${ICONS.has(name) ? name : "code"}"/></svg>`;
   const slug = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
@@ -38,11 +38,28 @@
     const facts = Array.isArray(p.facts) && p.facts.length
       ? `<dl class="facts">${p.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join("")}</dl>`
       : "";
+    // Milestone track: done ones fill in, the first unfinished one is "Up next".
+    const road = Array.isArray(p.roadmap) ? p.roadmap.filter((m) => m && m.title) : [];
+    const next = road.findIndex((m) => !m.done);
+    const roadmap = road.length
+      ? `<div class="road">
+          <p class="road__count"><strong>${road.filter((m) => m.done).length} of ${road.length}</strong> milestones done</p>
+          <ol class="road__list" aria-label="${esc(p.title)} roadmap">${road.map((m, j) => {
+            const st = m.done ? "done" : j === next ? "next" : "todo";
+            const tag = st === "done" ? "Done" : st === "next" ? "Up next" : "Planned";
+            return `
+            <li class="road__step is-${st}">
+              <span class="road__state">${st === "done" ? icon("check-circle") : st === "next" ? icon("clock-countdown") : ""}${tag}</span>
+              <strong>${esc(m.title)}</strong>${m.text ? `<span>${esc(m.text)}</span>` : ""}
+            </li>`;
+          }).join("")}</ol>
+        </div>`
+      : "";
     const tags = Array.isArray(p.tags) && p.tags.length
       ? `<ul class="chips" aria-label="Built with">${p.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`
       : "";
     return `
-      <article class="pj ${layout(i)}${art ? " pj--art" : ""}${img ? " pj--img" : ""}" data-area="${slug(p.area)}">
+      <article class="pj ${layout(i)}${art ? " pj--art" : ""}${img ? " pj--img" : ""}${roadmap ? " pj--road" : ""}" data-area="${slug(p.area)}">
         ${art ? `<img class="pj__art" src="${esc(art)}" alt="" loading="lazy">` : ""}
         ${img ? `<a class="pj__shot" href="${esc(img)}" target="_blank" rel="noopener"><img src="${esc(img)}" alt="Screenshot of ${esc(p.title)}" loading="lazy"></a>` : ""}
         <div class="pj__body">
@@ -50,9 +67,9 @@
             <h3 class="tile__title">${esc(p.title)}</h3>
             ${links ? `<div class="pj__links">${links}</div>` : ""}
           </div>
-          ${p.area || p.status ? `<p class="pj__area">${esc(p.area || "")}${p.status ? `<span class="pj__status">${esc(p.status)}</span>` : ""}</p>` : ""}
+          ${p.area || p.status ? `<p class="pj__area">${esc(p.area || "")}${p.status ? `<span class="pj__status${roadmap ? " pj__status--live" : ""}">${esc(p.status)}</span>` : ""}</p>` : ""}
           <p class="tile__body">${esc(p.summary)}</p>
-          ${steps}${facts}${tags}
+          ${steps}${facts}${roadmap}${tags}
         </div>
       </article>`;
   }

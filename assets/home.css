@@ -208,3 +208,47 @@
 .pj--art .chips li { background: color-mix(in srgb, var(--bg) 60%, transparent); }
 @media (hover: hover) { .pj--art:hover .pj__art { transform: scale(1.04); } }
 @media (max-width: 479px) { .pj__body { padding: 22px; } }
+
+/* ---------- Roadmap (in-progress projects) ---------- */
+.pj__status--live { display: inline-flex; align-items: center; gap: 6px; }
+.pj__status--live::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pj__status--live::before { animation: live-pulse 2.4s var(--ease) infinite; }
+}
+@keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.road { display: grid; gap: 14px; margin-top: 4px; }
+.road__count { font: 500 0.8125rem/1.4 var(--mono); color: var(--muted); }
+.road__count strong { color: var(--text); font-weight: 600; }
+.road__list { display: grid; grid-template-columns: 1fr; gap: 12px; list-style: none; padding: 0; margin: 0; }
+@container (min-width: 420px) { .road__list { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; } }
+@container (min-width: 640px) { .road__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@container (min-width: 960px) { .road__list { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+.road__step {
+  display: flex; flex-direction: column; gap: 4px; padding-top: 12px;
+  border-top: 2px solid var(--line); font-size: 0.875rem;
+}
+.road__step strong { font-weight: 600; }
+.road__step > span:last-child { color: var(--muted); line-height: 1.45; }
+.road__state {
+  display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2px;
+  font: 500 0.6875rem/1.3 var(--mono); color: var(--muted);
+}
+.road__state .icon { width: 14px; height: 14px; }
+.road__step.is-done { border-top-color: var(--accent); }
+.road__step.is-done .road__state { color: var(--accent); }
+.road__step.is-next { border-top-color: transparent; border-image: linear-gradient(90deg, var(--accent) 0 40%, var(--line) 40%) 1; }
+.road__step.is-next .road__state { color: var(--accent); }
+.road__step.is-todo strong { color: color-mix(in srgb, var(--text) 80%, var(--muted)); }
+.pj--road .road__step > span:last-child { color: color-mix(in srgb, var(--text) 70%, var(--muted)); }
+/* Narrow cards: only the next milestone keeps its description */
+@container (max-width: 419px) {
+  .road__list { gap: 10px; }
+  .road__step { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 10px; padding-top: 10px; }
+  .road__step .road__state { order: 2; margin: 0 0 0 auto; }
+  .road__step > span:last-child { flex-basis: 100%; order: 3; }
+  .road__step:not(.is-next) > span:last-child { display: none; }
+}
