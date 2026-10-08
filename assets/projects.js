@@ -47,10 +47,10 @@
         ${img ? `<a class="pj__shot" href="${esc(img)}" target="_blank" rel="noopener"><img src="${esc(img)}" alt="Screenshot of ${esc(p.title)}" loading="lazy"></a>` : ""}
         <div class="pj__body">
           <div class="tile__head">
-            <h3 class="tile__title">${esc(p.title)}${p.status ? ` <span class="pj__status">${esc(p.status)}</span>` : ""}</h3>
+            <h3 class="tile__title">${esc(p.title)}</h3>
             ${links ? `<div class="pj__links">${links}</div>` : ""}
           </div>
-          ${p.area ? `<p class="pj__area">${esc(p.area)}</p>` : ""}
+          ${p.area || p.status ? `<p class="pj__area">${esc(p.area || "")}${p.status ? `<span class="pj__status">${esc(p.status)}</span>` : ""}</p>` : ""}
           <p class="tile__body">${esc(p.summary)}</p>
           ${steps}${facts}${tags}
         </div>

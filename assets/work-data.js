@@ -39,6 +39,14 @@
 */
 window.COMPLETED_WORK = [
   {
+    title: "Murim Ascent combat system",
+    type: "Combat",
+    client: "Personal project",
+    summary: "Parry-focused melee combat for a Deepwoken-style Roblox game: M1 strings with feints and cancels, a posture system, and clear visual tells before big attacks. The client plays every action instantly while the server checks each move and cooldown against its own copy of the fight.",
+    media: ["assets/work/murim-combat.webm", "assets/work/murim-combat.mp4"],
+    poster: "assets/work/murim-combat-poster.jpg",
+  },
+  {
     title: "Jianghu movement system",
     type: "Movement",
     client: "Personal project",

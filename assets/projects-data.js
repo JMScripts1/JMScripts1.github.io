@@ -57,6 +57,19 @@ window.PROJECTS = [
     ],
   },
   {
+    title: "Murim Ascent combat system",
+    area: "Games",
+    summary: "Parry-based melee combat for a Deepwoken-inspired Roblox game, with M1 feints and cancels, posture, and readable attack tells.",
+    tags: ["Luau", "Rojo", "Selene", "LemonSignal"],
+    image: "assets/work/murim-combat-poster.jpg",
+    status: "Prototype",
+    links: [{ label: "Watch it", url: "commissions.html#work" }],
+    facts: [
+      { label: "Netcode", value: "Client-predicted, server-validated" },
+      { label: "Built on", value: "Separate combat and movement state machines" },
+    ],
+  },
+  {
     title: "Jianghu movement system",
     area: "Games",
     summary: "Momentum-based parkour movement for my parry-focused Roblox RPG. Sprint, slide, wall run, wall boost and vault all chain together, and chaining builds a Flow meter that raises the speed cap.",
