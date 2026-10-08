@@ -71,7 +71,6 @@ window.COMPLETED_WORK = [
     client: "Personal project",
     summary: "The client and server each had their own copy of the landing logic, and they drifted apart: the server kept dropping sprint to walk on landing and rubber-banding players. I merged both into one shared function and added a check that fails at startup if any state can't reach a landing.",
     code: "assets/work/landing-resolution.luau",
-    links: [{ label: "View on GitHub", url: "https://github.com/JmathiasOTU/jianghu/blob/HEAD/src/Shared/Movement/LandingResolution.luau" }],
   },
   // Example (remove the slashes at the start of each line to use it):
   // {
