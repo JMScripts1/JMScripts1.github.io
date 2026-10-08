@@ -57,11 +57,17 @@ window.PROJECTS = [
     ],
   },
   {
-    title: "Roblox games",
+    title: "Jianghu movement system",
     area: "Games",
-    summary: "In progress in Roblox Studio with Luau. They'll show up here once they ship.",
-    tags: ["Luau", "Roblox Studio"],
-    status: "In progress",
-    art: "assets/img/blossom-paint.webp",
+    summary: "Momentum-based parkour movement for my parry-focused Roblox RPG. Sprint, slide, wall run, wall boost and vault all chain together, and chaining builds a Flow meter that raises the speed cap.",
+    tags: ["Luau", "Rojo", "Wally", "Lune tests"],
+    image: "assets/work/jianghu-movement-poster.jpg",
+    links: [{ label: "Watch it", url: "commissions.html#work" }],
+    steps: [
+      { icon: "game-controller", title: "Input", text: "Double-tap to run, hold to sprint, jump to wall run" },
+      { icon: "cpu", title: "State machine", text: "One shared FSM drives every move" },
+      { icon: "desktop-tower", title: "Server check", text: "Client predicts, server checks speed and corrects" },
+      { icon: "lightning", title: "Feel", text: "Spring camera, FOV kicks, sounds and particles" },
+    ],
   },
 ];

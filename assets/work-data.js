@@ -23,6 +23,10 @@
     summary   one or two sentences about what it does
     media     "assets/work/your-file.mp4" (or .png/.jpg/.gif/.webp),
               or a YouTube link
+    poster    optional still image shown before a video starts playing
+              (media can also be a list of the same video in two formats,
+              e.g. ["assets/work/clip.webm", "assets/work/clip.mp4"])
+    client    can also be "Personal project" for your own work
     proof     a screenshot of the client confirming or vouching for it,
               e.g. "assets/work/vouch-boss-ai.png". Shown as "View proof"
     review    a short quote from the client (keep it to a sentence or two)
@@ -34,6 +38,14 @@
   ============================================================
 */
 window.COMPLETED_WORK = [
+  {
+    title: "Jianghu movement system",
+    type: "Movement",
+    client: "Personal project",
+    summary: "Parkour-style movement for my parry-based Roblox RPG: sprint, slide, double jump, wall run, wall cling, wall boost and vault, with momentum that carries between moves. Chaining moves builds a Flow meter that raises the speed cap.",
+    media: ["assets/work/jianghu-movement.webm", "assets/work/jianghu-movement.mp4"],
+    poster: "assets/work/jianghu-movement-poster.jpg",
+  },
   // Example (remove the slashes at the start of each line to use it):
   // {
   //   title: "Combo melee system",

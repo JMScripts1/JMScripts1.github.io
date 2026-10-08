@@ -33,7 +33,9 @@
   };
 
   function media(w) {
-    const src = safeUrl(w.media);
+    // media can be one file, or a list of versions of the same video (e.g. .webm then .mp4)
+    const files = (Array.isArray(w.media) ? w.media : [w.media]).map(safeUrl).filter(Boolean);
+    const src = files[0] || "";
     if (!src) {
       return `<div class="wk__media wk__media--none">${icon(iconFor(w.type), "icon wk__glyph")}</div>`;
     }
@@ -45,7 +47,10 @@
         </button></div>`;
     }
     if (/\.(mp4|webm|mov)(\?|$)/i.test(src)) {
-      return `<div class="wk__media"><video src="${esc(src)}" muted loop playsinline preload="metadata" ${reduce ? "controls" : ""} aria-label="${esc(w.title)}"></video></div>`;
+      const poster = safeUrl(w.poster);
+      const type = (f) => (/\.webm(\?|$)/i.test(f) ? "video/webm" : /\.mov(\?|$)/i.test(f) ? "video/quicktime" : "video/mp4");
+      const sources = files.map((f) => `<source src="${esc(f)}" type="${type(f)}">`).join("");
+      return `<div class="wk__media"><video${poster ? ` poster="${esc(poster)}"` : ""} muted loop playsinline preload="${poster ? "none" : "metadata"}" ${reduce ? "controls" : ""} aria-label="${esc(w.title)}">${sources}</video></div>`;
     }
     return `<a class="wk__media" href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="${esc(w.title)}" loading="lazy"></a>`;
   }
@@ -64,7 +69,10 @@
 
   function card(w, i) {
     const meta = [w.type ? esc(w.type) : "", w.date ? fmtDate(w.date) : ""].filter(Boolean).join(" · ");
-    const client = w.client ? (w.client === "Private" ? "Private client" : `For ${esc(w.client)}`) : "";
+    const client = !w.client ? ""
+      : w.client === "Private" ? "Private client"
+      : /^personal/i.test(w.client) ? esc(w.client)
+      : `For ${esc(w.client)}`;
     const proof = safeUrl(w.proof);
     const links = (Array.isArray(w.links) ? w.links : [])
       .map((l) => (l && safeUrl(l.url) ? `<a class="wk__link" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || "Open")}${icon("arrow-square-out")}</a>` : ""))
@@ -106,7 +114,7 @@
   section.hidden = false;
 
   const count = document.getElementById("work-count");
-  if (count) count.textContent = `${list.length} finished ${list.length === 1 ? "commission" : "commissions"}`;
+  if (count) count.textContent = `${list.length} completed ${list.length === 1 ? "project" : "projects"}`;
 
   // YouTube: load the player only when someone clicks, so the page stays light.
   grid.addEventListener("click", (e) => {

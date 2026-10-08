@@ -7,7 +7,8 @@
   if (!grid || !list.length) return;
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const safeUrl = (u) => { const s = String(u || "").trim(); return /^(https?:\/\/|assets\/)/i.test(s) ? s : ""; };
+  // Web links, files in the site, or another page of the site (e.g. "commissions.html#work").
+  const safeUrl = (u) => { const s = String(u || "").trim(); return /^(https?:\/\/|assets\/|[\w-]+\.html(#[\w-]+)?$)/i.test(s) ? s : ""; };
   const ICONS = new Set(["desktop-tower", "database", "ticket", "bell-ringing", "chart-line-up", "cpu", "code", "game-controller", "wrench", "lightning"]);
   const icon = (name, cls = "icon") => `<svg class="${cls}" aria-hidden="true"><use href="assets/icons.svg#i-${ICONS.has(name) ? name : "code"}"/></svg>`;
   const slug = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -28,7 +29,7 @@
     const art = safeUrl(p.art), img = safeUrl(p.image);
     const links = (Array.isArray(p.links) ? p.links : [])
       .filter((l) => l && safeUrl(l.url))
-      .map((l) => `<a class="pj__link" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || "Open")}<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg></a>`)
+      .map((l) => `<a class="pj__link" href="${esc(safeUrl(l.url))}"${/^https?:/i.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${esc(l.label || "Open")}<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg></a>`)
       .join("");
     const steps = Array.isArray(p.steps) && p.steps.length
       ? `<ol class="flow pj__flow" aria-label="How ${esc(p.title)} works">${p.steps.map((s) => `
