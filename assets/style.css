@@ -232,10 +232,7 @@ a { color: inherit; }
 .about__text p { font-size: 1.125rem; max-width: 58ch; }
 .about__text p + p { margin-top: 18px; color: var(--muted); }
 .offclock { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 24px; max-width: 58ch; }
-.offclock__item { margin: 0; display: grid; grid-template-rows: 1fr auto; gap: 8px; }
-.offclock__item figcaption { font: 500 0.8125rem/1.4 var(--mono); color: var(--muted); padding-left: 4px; }
-.offclock__item figcaption a { color: var(--text); text-decoration: none; }
-.offclock__item figcaption a:hover { color: var(--accent); }
+.offclock__item { margin: 0; display: grid; }
 .beat {
   display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 14px 16px 16px;
   border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
