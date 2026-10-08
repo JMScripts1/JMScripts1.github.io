@@ -187,19 +187,25 @@
     background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 15%, var(--line))); }
   .path__mark { position: absolute; left: -44px; top: 0; margin: 0; }
 }
-/* Reveal: the line draws through the steps and each petal blooms as the line reaches it */
-.path li:nth-child(2) { --d: 0.3s; }
-.path li:nth-child(3) { --d: 0.6s; }
-.path li:nth-child(4) { --d: 0.9s; }
-.path li:nth-child(5) { --d: 1.2s; }
+/* Reveal: the line draws through the steps and each petal blooms as the line reaches it.
+   Once revealed, a highlight walks the petals in order to show the sequence. */
+.path li:nth-child(2) { --i: 1; }
+.path li:nth-child(3) { --i: 2; }
+.path li:nth-child(4) { --i: 3; }
+.path li:nth-child(5) { --i: 4; }
+.path li { --d: calc(var(--i, 0) * 0.6s); --step: calc(3.8s + var(--i, 0) * 1.4s); }
 @media (prefers-reduced-motion: no-preference) {
-  .js .path::before { transform: scaleX(0); transform-origin: left center; transition: transform 1.5s cubic-bezier(0.4, 0, 0.6, 1) 0.15s; }
+  .js .path::before { transform: scaleX(0); transform-origin: left center; transition: transform 3s cubic-bezier(0.4, 0, 0.6, 1) 0.2s; }
   .js .reveal.is-in .path::before { transform: none; }
-  .js .path li { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-  .js .reveal.is-in .path li { opacity: 1; transform: none; transition-delay: calc(var(--d, 0s) + 0.1s); }
+  .js .path li { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .js .reveal.is-in .path li { opacity: 1; transform: none; transition-delay: calc(var(--d) + 0.15s); }
   .js .path__mark { transform: rotate(-45deg) scale(0); }
-  .js .reveal.is-in .path__mark { animation: petal-bloom 0.9s var(--ease) calc(var(--d, 0s) + 0.15s) both; }
-  .js .reveal.is-in .path li:first-child .path__mark { animation-name: petal-bloom-first; }
+  .js .reveal.is-in .path__mark {
+    animation: petal-bloom 1.2s var(--ease) calc(var(--d) + 0.2s) both,
+               petal-step 9s ease-in-out var(--step) infinite;
+  }
+  .js .reveal.is-in .path li:first-child .path__mark { animation-name: petal-bloom-first, petal-step-first; }
+  .js .reveal.is-in .path strong { animation: step-title 9s ease-in-out var(--step) infinite; }
 }
 @media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
   .js .path::before { transform: scaleY(0); transform-origin: center top; }
@@ -213,6 +219,19 @@
   0% { transform: rotate(-45deg) scale(0); }
   45% { transform: rotate(-45deg) scale(1.18); }
   100% { transform: rotate(-45deg) scale(1); }
+}
+/* 9s cycle: each petal is lit for about 1.4s, then the next one takes over */
+@keyframes petal-step {
+  0%, 26%, 100% { transform: rotate(-45deg) scale(1); background: var(--accent-soft); }
+  7%, 16% { transform: rotate(-45deg) scale(1.15); background: var(--accent); }
+}
+@keyframes petal-step-first {
+  0%, 26%, 100% { transform: rotate(-45deg) scale(1); }
+  7%, 16% { transform: rotate(-45deg) scale(1.15); }
+}
+@keyframes step-title {
+  0%, 26%, 100% { color: var(--text); }
+  7%, 16% { color: var(--accent); }
 }
 
 /* ---------- Terms ---------- */
