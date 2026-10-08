@@ -70,6 +70,18 @@ window.PROJECTS = [
     ],
   },
   {
+    title: "Tree jumping",
+    area: "Games",
+    summary: "Aim-and-hop traversal for Naruto-style Roblox games: arc between trees, perch on branches, and chain jumps through a forest.",
+    tags: ["Luau", "Rojo"],
+    image: "assets/work/tree-jump-poster.jpg",
+    links: [{ label: "Watch it", url: "commissions.html#work" }],
+    facts: [
+      { label: "Controls", value: "Y to hop, Space to launch off a branch" },
+      { label: "Level design", value: "Optional landing markers per tree" },
+    ],
+  },
+  {
     title: "Jianghu movement system",
     area: "Games",
     summary: "Momentum-based parkour movement for my parry-focused Roblox RPG. Sprint, slide, wall run, wall boost and vault all chain together, and chaining builds a Flow meter that raises the speed cap.",

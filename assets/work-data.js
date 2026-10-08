@@ -39,6 +39,14 @@
 */
 window.COMPLETED_WORK = [
   {
+    title: "Tree jumping",
+    type: "Movement",
+    client: "Personal project",
+    summary: "Naruto-style tree hopping: aim at a tree and press Y to arc onto it, perch on the branch and aim with the camera, then launch with Space or chain straight to the next tree. Designers can place exact landing spots, and the server checks every jump.",
+    media: ["assets/work/tree-jump.webm", "assets/work/tree-jump.mp4"],
+    poster: "assets/work/tree-jump-poster.jpg",
+  },
+  {
     title: "Murim Ascent combat system",
     type: "Combat",
     client: "Personal project",
