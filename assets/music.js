@@ -3,118 +3,81 @@
 // starts when they press the toggle. The choice is remembered: if they left it on,
 // it resumes on their first click or key press on the next visit.
 //
-// By default the music is generated live with the Web Audio API: a soft pad that
-// drifts between chords, plus sparse koto-like notes from a Japanese pentatonic
-// scale. No audio file to download, and no licensing to worry about.
-//
-// To use your own track instead, put the file in assets/audio/ and set MUSIC_FILE,
-// e.g. "assets/audio/ambience.mp3". Only use music you made or have the rights to.
+// The track is only downloaded once someone turns music on. It loops with a
+// crossfade: the silent tail is trimmed and the next pass fades in while the
+// current one fades out, so there's no gap or jump at the loop point.
 (() => {
-  const MUSIC_FILE = "";
-  const VOLUME = 0.12; // overall loudness, 0 to 1. Kept very low on purpose.
+  const MUSIC_FILE = "assets/audio/portfolio-music.mp3";
+  const VOLUME = 0.12;      // overall loudness, 0 to 1. Kept very low on purpose.
+  const CROSSFADE = 3;      // seconds the end of the track overlaps the start
   const STORE_KEY = "jm-music-on";
 
   const btn = document.querySelector(".music");
-  if (!btn || !(window.AudioContext || window.webkitAudioContext)) {
-    if (btn) btn.hidden = true;
-    return;
-  }
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!btn || !AC || !window.fetch) { if (btn) btn.hidden = true; return; }
   const label = btn.querySelector(".music__label");
   const iconUse = btn.querySelector(".music__icon use");
 
-  let ctx, master, playing = false, timers = [], fileEl = null;
+  let ctx, master, buffer, loopEnd, loading = null;
+  let playing = false, nextStart = 0, scheduler = 0;
+  const voices = new Set();
 
   const remember = (on) => { try { localStorage.setItem(STORE_KEY, on ? "1" : "0"); } catch {} };
   const wasOn = () => { try { return localStorage.getItem(STORE_KEY) === "1"; } catch { return false; } };
 
-  function setUI(on) {
+  function setUI(state) {
+    const on = state === "on";
     btn.setAttribute("aria-pressed", String(on));
     btn.dataset.on = on ? "true" : "false";
-    label.textContent = on ? "Music on" : "Music off";
-    iconUse.setAttribute("href", `assets/icons.svg#i-${on ? "music-notes" : "speaker-simple-slash"}`);
+    label.textContent = state === "loading" ? "Loading music" : on ? "Music on" : "Music off";
+    iconUse.setAttribute("href", `assets/icons.svg#i-${on || state === "loading" ? "music-notes" : "speaker-simple-slash"}`);
   }
 
-  function setup() {
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
-    master = ctx.createGain();
-    master.gain.value = 0;
-
-    // A simple feedback delay with a lowpass in the loop stands in for reverb.
-    const delay = ctx.createDelay(2);
-    delay.delayTime.value = 0.42;
-    const fb = ctx.createGain(); fb.gain.value = 0.38;
-    const damp = ctx.createBiquadFilter(); damp.type = "lowpass"; damp.frequency.value = 2200;
-    delay.connect(damp); damp.connect(fb); fb.connect(delay);
-    const wet = ctx.createGain(); wet.gain.value = 0.5;
-    delay.connect(wet);
-
-    const bus = ctx.createGain();
-    bus.connect(master); bus.connect(delay); wet.connect(master);
-    master.connect(ctx.destination);
-    return bus;
-  }
-
-  // ---- Generative ambience -------------------------------------------------
-  // D "yo" pentatonic (D E G A B) keeps every note consonant with the pad.
-  const SCALE = [293.66, 329.63, 392.0, 440.0, 493.88, 587.33, 659.25, 783.99];
-  const CHORDS = [
-    [146.83, 220.0, 293.66, 369.99], // D
-    [123.47, 185.0, 246.94, 293.66], // Bm
-    [98.0, 146.83, 196.0, 246.94],   // G
-    [110.0, 164.81, 220.0, 277.18],  // A
-  ];
-
-  function padChord(bus, freqs, at, dur) {
-    const g = ctx.createGain();
-    const lp = ctx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 900; lp.Q.value = 0.3;
-    g.connect(lp); lp.connect(bus);
-    g.gain.setValueAtTime(0, at);
-    g.gain.linearRampToValueAtTime(0.16, at + dur * 0.35);
-    g.gain.linearRampToValueAtTime(0, at + dur);
-    for (const f of freqs) {
-      for (const detune of [-6, 6]) {
-        const o = ctx.createOscillator();
-        o.type = "triangle"; o.frequency.value = f; o.detune.value = detune;
-        o.connect(g); o.start(at); o.stop(at + dur + 0.1);
-      }
+  // Where the music actually ends: skip the near-silent tail of the file.
+  function findEnd(buf) {
+    const ch = buf.getChannelData(0);
+    for (let i = ch.length - 1; i > 0; i -= 64) {
+      if (Math.abs(ch[i]) > 0.01) return Math.min(buf.duration, (i + 2048) / buf.sampleRate);
     }
+    return buf.duration;
   }
 
-  function pluck(bus, freq, at) {
-    const o = ctx.createOscillator(), o2 = ctx.createOscillator();
+  function load() {
+    if (!loading) {
+      loading = fetch(MUSIC_FILE)
+        .then((r) => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        .then((data) => new Promise((res, rej) => ctx.decodeAudioData(data, res, rej)))
+        .then((buf) => { buffer = buf; loopEnd = findEnd(buf); });
+      loading.catch(() => { loading = null; });
+    }
+    return loading;
+  }
+
+  // Start one pass of the track at `when`, fading in (except the very first pass,
+  // which the master fade already covers) and fading out over the crossfade.
+  function startPass(when, first) {
+    const src = ctx.createBufferSource();
     const g = ctx.createGain();
-    o.type = "sine"; o.frequency.value = freq;
-    o2.type = "sine"; o2.frequency.value = freq * 2.01; // faint overtone for a koto-ish edge
-    const g2 = ctx.createGain(); g2.gain.value = 0.18;
-    o.connect(g); o2.connect(g2); g2.connect(g); g.connect(bus);
-    g.gain.setValueAtTime(0, at);
-    g.gain.linearRampToValueAtTime(0.22, at + 0.012);
-    g.gain.exponentialRampToValueAtTime(0.0008, at + 2.8);
-    o.start(at); o2.start(at); o.stop(at + 3); o2.stop(at + 3);
+    src.buffer = buffer;
+    src.connect(g); g.connect(master);
+    const len = loopEnd;
+    const xf = Math.min(CROSSFADE, len / 4);
+    g.gain.setValueAtTime(first ? 1 : 0, when);
+    if (!first) g.gain.linearRampToValueAtTime(1, when + xf);
+    g.gain.setValueAtTime(1, when + len - xf);
+    g.gain.linearRampToValueAtTime(0, when + len);
+    src.start(when, 0, len);
+    voices.add(src);
+    src.onended = () => voices.delete(src);
+    nextStart = when + len - xf;
   }
 
-  function startGenerative(bus) {
-    const CHORD_LEN = 8; // seconds per chord
-    let chordIndex = 0, nextChord = ctx.currentTime + 0.05;
-    let nextNote = ctx.currentTime + 1.2;
-    // Look-ahead scheduler: every 250ms, queue anything due in the next second.
-    const tick = () => {
-      if (!playing) return;
-      const ahead = ctx.currentTime + 1;
-      while (nextChord < ahead) {
-        padChord(bus, CHORDS[chordIndex % CHORDS.length], nextChord, CHORD_LEN + 2);
-        chordIndex++; nextChord += CHORD_LEN;
-      }
-      while (nextNote < ahead) {
-        if (Math.random() < 0.7) pluck(bus, SCALE[(Math.random() * SCALE.length) | 0], nextNote);
-        nextNote += [0.9, 1.4, 1.8, 2.6, 3.2][(Math.random() * 5) | 0];
-      }
-      timers.push(setTimeout(tick, 250));
-    };
-    tick();
+  // Keeps queuing the next pass a little before it's needed. Uses the audio clock,
+  // so while the context is suspended (music paused) nothing advances.
+  function tick() {
+    if (playing && buffer && ctx.currentTime > nextStart - 1.5) startPass(nextStart, false);
   }
 
-  // ---- Play / stop ---------------------------------------------------------
   function fadeTo(value, seconds) {
     const t = ctx.currentTime;
     master.gain.cancelScheduledValues(t);
@@ -124,30 +87,36 @@
 
   async function play() {
     if (playing) return;
+    playing = true;
     if (!ctx) {
-      const bus = setup();
-      if (MUSIC_FILE) {
-        fileEl = new Audio(MUSIC_FILE);
-        fileEl.loop = true;
-        ctx.createMediaElementSource(fileEl).connect(bus);
-      }
-      btn._bus = bus;
+      ctx = new AC();
+      master = ctx.createGain();
+      master.gain.value = 0;
+      master.connect(ctx.destination);
     }
     await ctx.resume();
-    playing = true;
-    if (fileEl) fileEl.play().catch(() => {});
-    else startGenerative(btn._bus);
+    if (!buffer) {
+      setUI("loading");
+      try { await load(); } catch {
+        playing = false; setUI("off"); label.textContent = "Music unavailable";
+        return;
+      }
+      if (!playing) return; // turned off while it was loading
+      startPass(ctx.currentTime + 0.05, true);
+    }
+    if (!scheduler) scheduler = setInterval(tick, 500);
     fadeTo(VOLUME, 2.5);
-    setUI(true);
+    setUI("on");
   }
 
   function stop() {
     if (!playing) return;
     playing = false;
-    timers.forEach(clearTimeout); timers = [];
+    setUI("off");
+    if (!ctx) return;
     fadeTo(0, 0.8);
-    setTimeout(() => { if (!playing) { if (fileEl) fileEl.pause(); ctx.suspend(); } }, 900);
-    setUI(false);
+    // Suspend after the fade so the track picks up where it left off next time.
+    setTimeout(() => { if (!playing) ctx.suspend(); }, 900);
   }
 
   btn.addEventListener("click", (e) => {
@@ -157,27 +126,24 @@
 
   // Pause while the tab is in the background, resume when it comes back.
   document.addEventListener("visibilitychange", () => {
-    if (!ctx) return;
     if (document.hidden && playing) { stop(); btn.dataset.resume = "true"; }
     else if (!document.hidden && btn.dataset.resume === "true") { delete btn.dataset.resume; play(); }
   });
 
-  setUI(false);
+  setUI("off");
   btn.hidden = false;
 
   // Returning visitor who left music on: start on their first interaction.
   if (wasOn()) {
-    btn.dataset.pending = "true";
     label.textContent = "Music on (click anywhere)";
     const resume = (e) => {
-      delete btn.dataset.pending;
       window.removeEventListener("pointerdown", resume);
       window.removeEventListener("keydown", resume);
       // A press on the toggle itself is handled by its own click handler.
-      if (e && btn.contains(e.target)) { setUI(false); return; }
+      if (e && btn.contains(e.target)) { setUI("off"); return; }
       if (!playing) play();
     };
-    window.addEventListener("pointerdown", resume, { once: true });
-    window.addEventListener("keydown", resume, { once: true });
+    window.addEventListener("pointerdown", resume);
+    window.addEventListener("keydown", resume);
   }
 })();
