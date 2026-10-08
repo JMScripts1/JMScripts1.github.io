@@ -23,6 +23,9 @@
     summary   one or two sentences about what it does
     media     "assets/work/your-file.mp4" (or .png/.jpg/.gif/.webp),
               or a YouTube link
+    code      instead of media, a code sample to show on the card:
+              "assets/work/your-snippet.luau" (upload the file to assets/work
+              first). Keep it to about 30 lines with few comments
     poster    optional still image shown before a video starts playing
               (media can also be a list of the same video in two formats,
               e.g. ["assets/work/clip.webm", "assets/work/clip.mp4"])
@@ -61,6 +64,14 @@ window.COMPLETED_WORK = [
     summary: "Parkour-style movement for my parry-based Roblox RPG: sprint, slide, double jump, wall run, wall cling, wall boost and vault, with momentum that carries between moves. Chaining moves builds a Flow meter that raises the speed cap.",
     media: ["assets/work/jianghu-movement.webm", "assets/work/jianghu-movement.mp4"],
     poster: "assets/work/jianghu-movement-poster.jpg",
+  },
+  {
+    title: "Landing logic cleanup",
+    type: "Fixes",
+    client: "Personal project",
+    summary: "The client and server each had their own copy of the landing logic, and they drifted apart: the server kept dropping sprint to walk on landing and rubber-banding players. I merged both into one shared function and added a check that fails at startup if any state can't reach a landing.",
+    code: "assets/work/landing-resolution.luau",
+    links: [{ label: "View on GitHub", url: "https://github.com/JmathiasOTU/jianghu/blob/HEAD/src/Shared/Movement/LandingResolution.luau" }],
   },
   // Example (remove the slashes at the start of each line to use it):
   // {

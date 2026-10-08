@@ -480,12 +480,14 @@
 @media (min-width: 640px) and (max-width: 1023px) {
   .wk.c2-span2 { display: grid; grid-template-columns: 1.35fr 1fr; }
   .wk.c2-span2 .wk__media { aspect-ratio: auto; min-height: 300px; }
+  .wk.c2-span2 .wk__code { border-bottom: 0; border-right: 1px solid var(--line); }
 }
 @media (min-width: 1024px) {
   .wk.c3-span2, .wk.c3-span3 { display: grid; grid-template-columns: 1.35fr 1fr; }
   .wk.c3-span3 { grid-template-columns: 1.6fr 1fr; }
   .wk.c3-span2 .wk__media, .wk.c3-span3 .wk__media { aspect-ratio: auto; min-height: 320px; }
   .wk.c3-span2 .wk__title, .wk.c3-span3 .wk__title { font-size: 1.5rem; letter-spacing: -0.025em; }
+  .wk.c3-span2 .wk__code, .wk.c3-span3 .wk__code { border-bottom: 0; border-right: 1px solid var(--line); }
 }
 .wk {
   display: flex; flex-direction: column; overflow: hidden;
@@ -512,6 +514,26 @@ a.wk__media img { transition: transform 0.8s var(--ease); }
 }
 .wk__play .icon { width: 26px; height: 26px; margin-left: 3px; }
 .wk__yt:hover .wk__play { transform: translate(-50%, -50%) scale(1.06); }
+
+.wk__code {
+  margin: 0; display: flex; flex-direction: column; min-width: 0; min-height: 0;
+  background: var(--surface-2); border-bottom: 1px solid var(--line);
+}
+.wk__file {
+  display: flex; align-items: center; gap: 8px; padding: 12px 18px;
+  font: 500 0.75rem/1.3 var(--mono); color: var(--muted); border-bottom: 1px solid var(--line);
+}
+.wk__file .icon { width: 14px; height: 14px; color: var(--accent); }
+.wk__code pre {
+  margin: 0; flex: 1; max-height: 420px; overflow: auto; padding: 16px 18px 18px;
+  font: 400 0.78125rem/1.65 var(--mono); color: var(--text); tab-size: 4;
+}
+@media (max-width: 639px) { .wk__code pre { max-height: 300px; } }
+.wk__code pre:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.tk-k { color: var(--accent); font-weight: 500; }
+.tk-s { color: color-mix(in srgb, var(--accent) 55%, var(--text)); }
+.tk-n { color: color-mix(in srgb, var(--accent) 70%, var(--muted)); }
+.tk-c { color: var(--muted); font-style: italic; }
 
 .wk__body { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 24px; }
 .wk__meta { display: flex; align-items: center; gap: 8px; font: 500 0.75rem/1.3 var(--mono); color: var(--muted); }
