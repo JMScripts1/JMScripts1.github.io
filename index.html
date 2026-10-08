@@ -52,8 +52,8 @@
         <p class="hero__sub">I'm Joshua, a CS student at Ontario Tech building games in Luau and backend tools in Python and SQL.</p>
         <div class="hero__ctas">
           <a class="btn btn--primary" href="#projects">View projects</a>
-          <a class="btn btn--ghost" href="https://github.com/JMScripts1" rel="me noopener" target="_blank">
-            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-github-logo"/></svg>GitHub
+          <a class="btn btn--ghost" href="assets/Joshua_Mathias_Resume.pdf" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-file-arrow-down"/></svg>Résumé
           </a>
         </div>
       </div>
@@ -90,8 +90,10 @@
 
     <section class="section wrap reveal" id="projects" aria-labelledby="projects-title">
       <h2 class="section__title" id="projects-title">Projects</h2>
+      <div class="work-filters" id="projects-filters" role="group" aria-label="Filter projects" hidden></div>
+      <!-- Built from assets/projects-data.js by assets/projects.js; the cards below are the fallback -->
 
-      <div class="bento">
+      <div class="bento" id="projects-grid">
         <article class="tile tile--feature">
           <div class="tile__head">
             <h3 class="tile__title">OpsWatch</h3>
@@ -161,7 +163,7 @@
       <div class="about__text">
         <h2 class="section__title" id="about-title">About</h2>
         <p>I split my time between building games in Roblox Studio and backend work: data pipelines, SQL, and dashboards.</p>
-        <p>Before university I spent a year in IT support at a managed service provider, imaging around 100 machines and supporting about 40 small businesses. OpsWatch grew out of that job.</p>
+        <p>Before university I did an IT support and systems co-op at a managed service provider, imaging around 100 devices and supporting about 40 small and medium-sized businesses. OpsWatch grew out of that job.</p>
       </div>
 
       <ol class="timeline" aria-label="Education and experience">
@@ -171,9 +173,9 @@
           <span>Computer Science</span>
         </li>
         <li>
-          <span class="timeline__when">1 year</span>
-          <strong>IT support, managed service provider</strong>
-          <span>Imaging, user support, small-business networks</span>
+          <span class="timeline__when">Oct 2024 to Jul 2025</span>
+          <strong>IT Support &amp; Systems Co-op, Personal Touch Computers</strong>
+          <span>Service desk, device imaging, Microsoft 365, backups</span>
         </li>
         <li>
           <span class="timeline__when">RP4K</span>
@@ -232,6 +234,8 @@
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-linkedin-logo"/></svg>LinkedIn</a></li>
         <li><a href="https://github.com/JMScripts1" target="_blank" rel="me noopener">
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-github-logo"/></svg>GitHub</a></li>
+        <li><a href="assets/Joshua_Mathias_Resume.pdf" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-file-arrow-down"/></svg>Résumé (PDF)</a></li>
       </ul>
       </div>
     </section>
@@ -246,5 +250,7 @@
   <script src="assets/engine.js" defer></script>
   <script src="assets/queue-data.js" defer></script>
   <script src="assets/queue.js" defer></script>
+  <script src="assets/projects-data.js" defer></script>
+  <script src="assets/projects.js" defer></script>
 </body>
 </html>

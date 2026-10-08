@@ -306,6 +306,18 @@ a { color: inherit; }
 .btn--glass:hover { background: color-mix(in srgb, var(--bg) 92%, transparent); }
 
 
+/* Shared filter chips (projects, completed work) */
+.work-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.wf {
+  padding: 7px 14px; border-radius: var(--pill); cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line)); background: transparent;
+  font: 500 0.875rem/1 var(--sans); color: var(--text);
+  transition: background-color 0.2s, color 0.2s;
+}
+.wf:hover { background: var(--accent-soft); }
+.wf.is-on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+
 /* Shared nav states */
 .nav__links a[aria-current="page"] { color: var(--text); background: var(--surface); }
 @media (max-width: 479px) { .nav__hide-sm { display: none; } }

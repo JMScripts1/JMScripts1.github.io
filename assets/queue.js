@@ -48,16 +48,22 @@
     return next === undefined || next === Infinity ? null : new Date(next);
   }
 
+  // If the file hasn't been touched in a while, don't promise dates from old data.
+  const STALE_DAYS = 14;
+  const updatedAt = parseDate(data.updated);
+  const stale = !closed && (!updatedAt || (today - updatedAt) / DAY > STALE_DAYS);
+
   const start = closed ? null : estimateStart();
   // A priority request only waits behind other priority work.
   const prioStart = closed || !prio ? null : estimateStart(queued.filter((q) => q.priority));
   const startsNow = start && start.getTime() <= today.getTime();
-  const state = closed ? "closed" : startsNow ? "open" : "waitlist";
+  const state = closed ? "closed" : stale ? "stale" : startsNow ? "open" : "waitlist";
 
   const statusText = {
     open: free > 0 ? `Open for commissions, ${plural(free, "slot")} free` : "Open for commissions",
     waitlist: "Booked up, waitlist open",
     closed: "Commissions closed",
+    stale: "Check Discord for availability",
   }[state];
 
   document.querySelectorAll("[data-queue-status]").forEach((el) => {
@@ -71,11 +77,13 @@
       open: "Open for Roblox scripting commissions",
       waitlist: "Booked up right now, waitlist open",
       closed: "Commissions are closed for now",
+      stale: "Roblox scripting commissions",
     }[state];
   });
 
   const estimateText = closed
     ? "Not taking new requests right now"
+    : stale ? "Ask on Discord"
     : startsNow ? "Right away"
     : start ? `Around ${fmt(start)}`
     : "Ask on Discord";
@@ -115,7 +123,7 @@
     slotCards.push(`
       <li class="slot slot--open">
         <div class="slot__top">${icon("check-circle", "icon slot__icon")}<span class="slot__stage">${closed ? "Closed" : "Open slot"}</span></div>
-        <h3 class="slot__title">${closed ? "Not taking requests" : "Available now"}</h3>
+        <h3 class="slot__title">${closed ? "Not taking requests" : stale ? `Open as of ${updatedAt ? fmt(updatedAt) : "last update"}` : "Available now"}</h3>
         ${closed || i > 0 ? "" : `<a class="slot__cta" href="#request">Request a commission</a>`}
       </li>`);
   }
@@ -129,7 +137,7 @@
 
   const fee = prio && String(prio.fee || "").trim() ? `for ${esc(String(prio.fee).trim())}` : "for an extra fee";
   const prioSooner = prioStart && start && prioStart.getTime() < start.getTime();
-  const prioBlock = prio && !closed && !startsNow ? `
+  const prioBlock = prio && !closed && !stale && !startsNow ? `
       <div class="qprio">
         <p class="qprio__head">${icon("lightning")}<strong>Need it sooner?</strong></p>
         <p>Priority puts your project at the front of the waitlist ${fee}.${prioSooner ? ` Estimated start with priority: <strong>${prioStart.getTime() <= today.getTime() ? "right away" : "around " + fmt(prioStart)}</strong>.` : ""}</p>
@@ -141,9 +149,10 @@
       <p class="qsum__label">Estimated start for a new request</p>
       <p class="qsum__value">${esc(estimateText)}</p>
       <p class="qsum__detail">${closed ? "Message me on Discord if you'd like a heads-up when I reopen." : `${active.length} of ${slots} slots in use${queued.length ? `, ${plural(queued.length, "project")} waiting` : ""}.`}</p>
+      ${stale ? `<p class="qsum__stale">${icon("clock-countdown")}<span>This queue was last updated ${updatedAt ? fmt(updatedAt) : "a while ago"}, so it may be out of date. Message <strong>Ruha.luau</strong> on Discord for current availability.</span></p>` : ""}
       ${prioBlock}
       ${data.note ? `<p class="qsum__note">${esc(data.note)}</p>` : ""}
-      <p class="qsum__updated">Estimate based on current projects${updated ? `. Updated ${fmt(updated)}.` : "."}</p>
+      <p class="qsum__updated">${stale ? "Last updated" : "Estimate based on current projects"}${updated ? `${stale ? " " : ". Updated "}${fmt(updated)}.` : "."}</p>
     </div>
     <div class="qboard">
       <ul class="slots">${slotCards.join("")}</ul>
