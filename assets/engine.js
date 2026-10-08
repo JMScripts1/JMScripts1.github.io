@@ -4,7 +4,7 @@
 // Runs only while the hero is on screen and the tab is visible, and draws a single
 // still frame when the visitor prefers reduced motion.
 (() => {
-  const canvas = document.querySelector("canvas[data-petals]");
+  const canvas = document.querySelector("canvas[data-petals], .hh__canvas");
   if (!canvas || !canvas.getContext) return;
   const ctx = canvas.getContext("2d");
   const hero = canvas.parentElement;
