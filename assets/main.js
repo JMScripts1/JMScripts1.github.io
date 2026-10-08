@@ -40,3 +40,21 @@ document.querySelectorAll(".copy").forEach((btn) => {
     }, 1800);
   });
 });
+
+// Off-the-clock players: load SoundCloud and TikTok only when someone clicks.
+const EMBEDS = {
+  soundcloud: { src: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/woahqi&color=%239b3760&auto_play=true&hide_related=true&show_comments=false&show_reposts=false&visual=false", title: "My beats on SoundCloud" },
+  tiktok: { src: "https://www.tiktok.com/player/v1/7252436817214000389?autoplay=1&description=0&music_info=0&rel=0", title: "My edit on TikTok" },
+};
+document.querySelectorAll(".offclock__play").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const e = EMBEDS[btn.dataset.embed];
+    const f = document.createElement("iframe");
+    f.src = e.src;
+    f.title = e.title;
+    f.dataset.kind = btn.dataset.embed;
+    f.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+    f.loading = "lazy";
+    btn.replaceWith(f);
+  });
+});
