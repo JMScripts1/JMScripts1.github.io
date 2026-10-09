@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Source | Joshua Mathias</title>
+  <meta name="description" content="Free, open source Roblox systems written in Luau. MIT licensed: use them in any game, free or paid.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#9b3760">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jmscripts1.github.io/open-source.html">
+  <meta property="og:title" content="Free Roblox systems | Ruha.luau">
+  <meta property="og:description" content="Open source Luau systems, MIT licensed. Use them in any game, free or paid.">
+  <meta property="og:image" content="https://jmscripts1.github.io/assets/og-commissions-3.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/sakura-banner.webp" as="image">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/commissions.css?v=20261008b">
+  <link rel="stylesheet" href="assets/open-source.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="art cpage opage">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__name" href="./">Joshua<span class="nav__last"> Mathias</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="./#projects">Projects</a></li>
+          <li class="nav__hide-sm"><a href="./#about">About</a></li>
+          <li><a href="commissions.html">Commissions</a></li>
+          <li><a href="open-source.html" aria-current="page">Open source</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero: painting behind, a tilted license card on the right previews the terms -->
+    <section class="ch oh">
+      <img class="ch__art" src="assets/img/sakura-banner.webp" width="1080" height="360" alt="" fetchpriority="high">
+      <canvas class="ch__canvas" data-petals aria-hidden="true"></canvas>
+      <div class="wrap ch__inner">
+        <div class="ch__copy">
+          <p class="status"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-git-fork"/></svg><span>Free and open source</span></p>
+          <h1 class="ch__title">Roblox systems, <span>free to use.</span></h1>
+          <p class="ch__sub">Luau systems I build in the open. Drop them into any game and change whatever you like.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="#systems">Browse systems</a>
+            <a class="btn btn--glass" href="#license">Read the license</a>
+          </div>
+        </div>
+        <a class="lic-card" href="#license" aria-label="MIT License summary, jump to the full license">
+          <svg class="icon lic-card__icon" aria-hidden="true"><use href="assets/icons.svg#i-scales"/></svg>
+          <strong class="lic-card__name">MIT License</strong>
+          <ul>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"/></svg>Free and paid games</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"/></svg>Edit anything</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check"/></svg>No fees, ever</li>
+          </ul>
+          <span class="lic-card__foot">&copy; 2026 Joshua Mathias</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Systems: built from assets/oss-data.js by assets/oss.js -->
+    <section class="section wrap reveal" id="systems" aria-labelledby="systems-title">
+      <h2 class="c-title" id="systems-title">Systems</h2>
+      <p class="oss__intro">Each one works on its own. They also connect through small APIs and signals, so you can use one or all of them together.</p>
+      <div class="oss__list" id="oss-list">
+        <p class="oss__empty">See everything on <a href="https://github.com/JMScripts1" target="_blank" rel="noopener">GitHub</a>.</p>
+      </div>
+
+      <div class="oss__next" id="oss-next" hidden>
+        <h3 class="oss__next-title">Coming next</h3>
+        <ul></ul>
+      </div>
+    </section>
+
+    <!-- Getting it into your game: painting on the left, three routes stacked on the right -->
+    <section class="section wrap install reveal" aria-labelledby="install-title">
+      <div class="install__art">
+        <img src="assets/img/two-blossoms.webp" width="700" height="711" alt="" loading="lazy">
+      </div>
+      <div>
+      <h2 class="c-title" id="install-title">Adding one to your game</h2>
+      <div class="routes">
+        <div class="route">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-terminal-window"/></svg>
+          <h3>Rojo</h3>
+          <p>Clone the repo and sync its source folder into your project.</p>
+        </div>
+        <div class="route">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-package"/></svg>
+          <h3>Wally</h3>
+          <p>Add the package line from the repo's README to your <code>wally.toml</code>.</p>
+        </div>
+        <div class="route">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-game-controller"/></svg>
+          <h3>Roblox Studio</h3>
+          <p>No tooling needed. Grab the model from the Creator Store and drop it in.</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- License: painted band with the plain-words summary on a frosted sheet -->
+    <section class="pay-band lic-band reveal" id="license" aria-labelledby="license-title">
+      <img class="pay-band__art" src="assets/img/plum-watercolor.webp" width="1000" height="666" alt="" loading="lazy">
+      <div class="wrap">
+        <div class="pay-sheet lic-sheet">
+          <h2 class="c-title" id="license-title">The license, in plain words</h2>
+          <p class="lic__lead">Everything here is released under the MIT license. In short, it's yours to use.</p>
+
+          <div class="lic-cols">
+            <div class="lic-col">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check-circle"/></svg>You can</h3>
+              <ul>
+                <li>Use it in any game, free or paid</li>
+                <li>Change, extend, or strip out anything</li>
+                <li>Share it or ship it as part of your own projects</li>
+              </ul>
+            </div>
+            <div class="lic-col lic-col--must">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-info"/></svg>You need to</h3>
+              <ul>
+                <li>Keep the copyright and license notice in the source files. That's the only rule.</li>
+              </ul>
+            </div>
+            <div class="lic-col">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-heart"/></svg>Appreciated</h3>
+              <ul>
+                <li>Credit in your game's description or credits</li>
+                <li>A star on the GitHub repo</li>
+                <li>Bug reports and pull requests</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="credit">
+            <span class="credit__label">Want to give credit? Copy this:</span>
+            <button class="credit__copy copy" type="button" data-copy="Systems by Ruha.luau (github.com/JMScripts1)">
+              <span class="copy__label">Systems by Ruha.luau (github.com/JMScripts1)</span>
+              <svg class="icon copy__icon" aria-hidden="true"><use href="assets/icons.svg#i-copy"/></svg>
+            </button>
+          </div>
+
+          <details class="lic-full">
+            <summary>Read the full license<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
+            <pre>MIT License
+
+Copyright (c) 2026 Joshua Mathias
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre>
+          </details>
+
+          <p class="lic__note">The code comes as is, with no warranty. Each repo's LICENSE file is the official copy. Commissioned work follows the <a href="commissions.html#terms">commission terms</a> instead.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hand-off to commissions -->
+    <section class="section wrap reveal" aria-labelledby="custom-title">
+      <div class="band oss-band">
+        <img class="band__art" src="assets/img/sakura-branch.webp" width="1200" height="659" alt="" loading="lazy">
+        <div>
+          <h2 id="custom-title">Need one built into your game?</h2>
+          <p>I can fit any of these to your data, UI, and existing code, or build something new on top.</p>
+        </div>
+        <a class="btn btn--primary" href="commissions.html#request">Request a commission</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>&copy; <span id="year">2026</span> Joshua Mathias</p>
+    <p class="footer__credit">Background artwork belongs to its original artists.</p>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+  <script src="assets/engine.js" defer></script>
+  <script src="assets/oss-data.js" defer></script>
+  <script src="assets/oss.js" defer></script>
+</body>
+</html>

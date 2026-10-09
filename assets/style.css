@@ -357,8 +357,16 @@ a { color: inherit; }
 
 /* Shared nav states */
 .nav__links a[aria-current="page"] { color: var(--text); background: var(--surface); }
-@media (max-width: 479px) { .nav__hide-sm { display: none; } }
-@media (max-width: 379px) { .nav__hide-xs { display: none; } }
+/* Four main links (Projects, Commissions, Open source, plus Contact on home) need
+   room, so About and Contact drop out first and the surname goes on phones. */
+@media (max-width: 719px) { .nav__hide-sm { display: none; } }
+@media (max-width: 639px) { .nav__hide-xs { display: none; } }
+@media (max-width: 559px) { .nav__last { display: none; } }
+@media (max-width: 374px) {
+  .nav__links a { padding: 6px 5px; font-size: 0.8125rem; }
+  .nav__name { font-size: 0.875rem; }
+}
+@media (max-width: 339px) { .nav__links a { padding: 6px 3px; font-size: 0.75rem; } .nav__inner { gap: 8px; } }
 
 /* Home page commissions band */
 .band {
