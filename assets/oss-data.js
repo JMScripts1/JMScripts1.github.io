@@ -48,7 +48,7 @@ window.OPEN_SOURCE = [
     ],
     tags: ["Luau", "Rojo", "Wally", "MIT"],
     repo: "",
-    art: "assets/img/blossom-paint.webp",
+    art: "assets/img/petal-wash.webp",
   },
   {
     title: "Trading",

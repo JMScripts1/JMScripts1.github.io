@@ -19,7 +19,7 @@
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/sakura-scroll.webp" as="image">
+  <link rel="preload" href="assets/img/sakura-banner.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/commissions.css">
   <link rel="stylesheet" href="assets/open-source.css">
@@ -45,7 +45,7 @@
   <main id="main">
     <!-- Hero: painting behind, a tilted license card on the right previews the terms -->
     <section class="ch oh">
-      <img class="ch__art" src="assets/img/sakura-scroll.webp" width="640" height="1138" alt="" fetchpriority="high">
+      <img class="ch__art" src="assets/img/sakura-banner.webp" width="1080" height="360" alt="" fetchpriority="high">
       <div class="wrap ch__inner">
         <div class="ch__copy">
           <p class="status"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-git-fork"/></svg><span>Free and open source</span></p>
@@ -83,8 +83,12 @@
       </div>
     </section>
 
-    <!-- Getting it into your game: three routes in one row, split by hairlines -->
-    <section class="section wrap reveal" aria-labelledby="install-title">
+    <!-- Getting it into your game: painting on the left, three routes stacked on the right -->
+    <section class="section wrap install reveal" aria-labelledby="install-title">
+      <div class="install__art">
+        <img src="assets/img/two-blossoms.webp" width="700" height="711" alt="" loading="lazy">
+      </div>
+      <div>
       <h2 class="c-title" id="install-title">Adding one to your game</h2>
       <div class="routes">
         <div class="route">
@@ -103,11 +107,12 @@
           <p>No tooling needed. Grab the model from the Creator Store and drop it in.</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- License: painted band with the plain-words summary on a frosted sheet -->
     <section class="pay-band lic-band reveal" id="license" aria-labelledby="license-title">
-      <img class="pay-band__art" src="assets/img/blossom-macro.webp" width="1000" height="1000" alt="" loading="lazy">
+      <img class="pay-band__art" src="assets/img/plum-watercolor.webp" width="1000" height="666" alt="" loading="lazy">
       <div class="wrap">
         <div class="pay-sheet lic-sheet">
           <h2 class="c-title" id="license-title">The license, in plain words</h2>
