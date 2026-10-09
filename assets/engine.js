@@ -1,10 +1,10 @@
-// Petal engine: a small 2D particle simulation behind the home hero.
+// Petal engine: a small 2D particle simulation behind the page hero (home, commissions and open source).
 // Petals fall with drag, sway, and a gusting wind field. The cursor (or a finger)
 // pushes petals away and drags a wake behind it; a click or tap releases a burst.
 // Runs only while the hero is on screen and the tab is visible, and draws a single
 // still frame when the visitor prefers reduced motion.
 (() => {
-  const canvas = document.querySelector(".hh__canvas");
+  const canvas = document.querySelector("canvas[data-petals], .hh__canvas");
   if (!canvas || !canvas.getContext) return;
   const ctx = canvas.getContext("2d");
   const hero = canvas.parentElement;

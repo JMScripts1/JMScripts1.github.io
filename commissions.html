@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://jmscripts1.github.io/commissions.html">
   <meta property="og:title" content="Roblox scripting commissions | Ruha.luau">
   <meta property="og:description" content="Movement, combat, UI, and game systems in Luau. USD, Robux, or percentage.">
-  <meta property="og:image" content="https://jmscripts1.github.io/assets/og-commissions.jpg">
+  <meta property="og:image" content="https://jmscripts1.github.io/assets/og-commissions-3.jpg">
   <meta property="og:image:alt" content="Roblox scripting commissions by Joshua Mathias, Ruha.luau on Discord">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/sakura-branch.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/commissions.css">
+  <link rel="stylesheet" href="assets/commissions.css?v=20261008b">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="art cpage">
@@ -46,10 +46,11 @@
     <!-- Hero: painting fills the band, copy sits in its empty misty left side -->
     <section class="ch">
       <img class="ch__art" src="assets/img/sakura-branch.webp" width="1200" height="659" alt="" fetchpriority="high">
+      <canvas class="ch__canvas" data-petals aria-hidden="true"></canvas>
       <div class="wrap ch__inner">
         <div class="ch__copy">
           <p class="status" data-queue-status><span class="status__dot" aria-hidden="true"></span><span data-queue-status-text>Roblox scripting commissions</span></p>
-          <h1 class="ch__title">Roblox scripting, built to <em>feel</em> right.</h1>
+          <h1 class="ch__title">I script <span>Roblox games.</span></h1>
           <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Tell me what you're making.</p>
           <div class="hero__ctas">
             <a class="btn btn--primary" href="#request">Request a commission</a>
@@ -385,6 +386,7 @@
   </footer>
 
   <script src="assets/main.js" defer></script>
+  <script src="assets/engine.js" defer></script>
   <script src="assets/queue-data.js" defer></script>
   <script src="assets/queue.js" defer></script>
   <script src="assets/work-data.js" defer></script>

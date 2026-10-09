@@ -36,18 +36,18 @@
 */
 window.OPEN_SOURCE = [
   {
-    title: "Inventory and shop",
+    title: "Inventory & Shop System",
     status: "In progress",
     icon: "backpack",
-    summary: "A server-authoritative inventory with a shop built on top. Items, stacking, equipping and purchases are all checked on the server, and other systems plug in through a small API and signals.",
+    summary: "A server-authoritative inventory and shop in strictly typed Luau, built to drop into any game. Items, tunables and visuals each live in one module.",
     features: [
-      "Add, remove, stack and equip items, with every change validated by the server",
-      "Shop with currency checks and purchase receipts",
-      "Saves through its own profile, or through yours with a data provider",
-      "Signals like ItemAdded and Purchased so other systems can react",
+      "Saves through ProfileStore with a ready-made profile template",
+      "Public add, remove and has calls, plus an equip signal",
+      "Buy and sell-back shop where every request is validated on the server",
+      "Handles full bags, low funds, spam and malformed requests",
     ],
-    tags: ["Luau", "Rojo", "Wally", "MIT"],
-    repo: "",
+    tags: ["Luau", "Rojo", "ProfileStore", "MIT"],
+    repo: "https://github.com/JMScripts1/Roblox-Inventory-System",
     art: "assets/img/petal-wash.webp",
   },
   {

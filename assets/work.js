@@ -32,7 +32,32 @@
     return m ? m[1] : "";
   };
 
+  // Small Luau highlighter for code samples: comments, strings, numbers, keywords.
+  const LUAU_KW = new Set("and break continue do else elseif end false for function if in local nil not or repeat return then true type until while".split(" "));
+  const LUAU_TOKEN = /(--[^\n]*)|("(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'|`(?:\\.|[^`\\])*`)|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)/g;
+  function highlight(src) {
+    let out = "", last = 0;
+    for (const m of src.matchAll(LUAU_TOKEN)) {
+      out += esc(src.slice(last, m.index));
+      const [t, comment, str, num, word] = m;
+      const cls = comment ? "c" : str ? "s" : num ? "n" : LUAU_KW.has(word) ? "k" : "";
+      out += cls ? `<span class="tk-${cls}">${esc(t)}</span>` : esc(t);
+      last = m.index + t.length;
+    }
+    return out + esc(src.slice(last));
+  }
+
+  function codeBlock(w) {
+    const file = safeUrl(w.code);
+    const name = file.split("/").pop();
+    return `<figure class="wk__code" data-code="${esc(file)}">
+        <figcaption class="wk__file">${icon("code")}<span>${esc(name)}</span></figcaption>
+        <pre tabindex="0" aria-label="Code sample: ${esc(name)}"><code>Loading…</code></pre>
+      </figure>`;
+  }
+
   function media(w) {
+    if (w.code) return codeBlock(w);
     // media can be one file, or a list of versions of the same video (e.g. .webm then .mp4)
     const files = (Array.isArray(w.media) ? w.media : [w.media]).map(safeUrl).filter(Boolean);
     const src = files[0] || "";
@@ -115,6 +140,15 @@
 
   const count = document.getElementById("work-count");
   if (count) count.textContent = `${list.length} completed ${list.length === 1 ? "project" : "projects"}`;
+
+  // Code samples: fetch the file and highlight it once the cards exist.
+  grid.querySelectorAll(".wk__code").forEach((fig) => {
+    const el = fig.querySelector("code");
+    fetch(fig.dataset.code)
+      .then((r) => (r.ok ? r.text() : Promise.reject()))
+      .then((src) => { el.innerHTML = highlight(src.replace(/\s+$/, "")); })
+      .catch(() => { el.textContent = "Couldn't load this code sample."; });
+  });
 
   // YouTube: load the player only when someone clicks, so the page stays light.
   grid.addEventListener("click", (e) => {

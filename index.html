@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/parasols.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/home.css">
+  <link rel="stylesheet" href="assets/home.css?v=20261009">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="art home">
@@ -46,10 +46,10 @@
   <main id="main">
     <section class="hh" id="top">
       <img class="hh__art" src="assets/img/parasols.webp" width="540" height="542" alt="" fetchpriority="high">
-      <canvas class="hh__canvas" aria-hidden="true"></canvas>
+      <canvas class="hh__canvas" data-petals aria-hidden="true"></canvas>
       <div class="hero wrap">
       <div class="hero__copy">
-        <h1 class="hero__title">Game developer and backend builder.</h1>
+        <h1 class="hero__title">Game developer <span>and backend builder.</span></h1>
         <p class="hero__sub">I'm Joshua, a CS student at Ontario Tech building games in Luau and backend tools in Python and SQL.</p>
         <div class="hero__ctas">
           <a class="btn btn--primary" href="#projects">View projects</a>
@@ -66,7 +66,7 @@
         <ul class="now__list">
           <li>
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-game-controller"/></svg>
-            <span>Building games in Roblox Studio</span>
+            <span>Building an inventory and shop system in Luau</span>
           </li>
           <li>
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chart-line-up"/></svg>
@@ -165,6 +165,33 @@
         <h2 class="section__title" id="about-title">About</h2>
         <p>I split my time between building games in Roblox Studio and backend work: data pipelines, SQL, and dashboards.</p>
         <p>Before university I did an IT support and systems co-op at a managed service provider, imaging around 100 devices and supporting about 40 small and medium-sized businesses. OpsWatch grew out of that job.</p>
+        <p>Off the clock I make soul beats, cut the occasional edit, read a lot of manhwa and manga, and lift.</p>
+        <div class="offclock">
+          <figure class="offclock__item">
+            <div class="beat" data-peaks="0.77,1.0,0.87,0.93,0.71,0.81,0.4,0.45,0.67,0.73,0.85,0.81,0.75,0.71,0.3,0.56,0.73,0.75,0.89,0.75,0.79,0.71,0.27,0.6,0.75,0.75,0.91,0.77,0.77,0.63,0.28,0.69,0.77,0.81,0.89,0.73,0.77,0.45,0.45,0.69,0.77,0.87,0.87,0.81,0.81,0.33,0.44,0.25">
+              <audio src="assets/about/beat.mp3" preload="none"></audio>
+              <div class="beat__head">
+                <button class="beat__play" type="button" aria-label="Play beat">
+                  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play-fill"/></svg>
+                </button>
+                <div class="beat__info">
+                  <strong>Last Dive</strong>
+                  <span class="beat__time"><span data-beat-now>0:00</span> / 1:22</span>
+                </div>
+              </div>
+              <div class="beat__wave" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="82" aria-valuenow="0"></div>
+            </div>
+          </figure>
+          <figure class="offclock__item">
+            <button class="edit" type="button" aria-label="Play edit with sound">
+              <video poster="assets/about/edit-poster.jpg" playsinline preload="none">
+                <source src="assets/about/edit.webm" type="video/webm">
+                <source src="assets/about/edit.mp4" type="video/mp4">
+              </video>
+              <span class="edit__play"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play-fill"/></svg></span>
+            </button>
+          </figure>
+        </div>
       </div>
 
       <ol class="timeline" aria-label="Education and experience">
@@ -251,7 +278,7 @@
   <script src="assets/engine.js" defer></script>
   <script src="assets/queue-data.js" defer></script>
   <script src="assets/queue.js" defer></script>
-  <script src="assets/projects-data.js" defer></script>
-  <script src="assets/projects.js" defer></script>
+  <script src="assets/projects-data.js?v=20261009" defer></script>
+  <script src="assets/projects.js?v=20261009" defer></script>
 </body>
 </html>

@@ -29,6 +29,9 @@
     status    optional, e.g. "In progress" (shows a small tag)
     art       optional background painting for a project without screenshots,
               e.g. "assets/img/blossom-paint.webp"
+    roadmap   optional milestone track for a project in progress. Mark finished
+              ones with done: true; the first unfinished one shows as "Up next":
+              [{ title: "Data layer", text: "...", done: true }]
   ============================================================
 */
 window.PROJECTS = [
@@ -93,6 +96,23 @@ window.PROJECTS = [
       { icon: "cpu", title: "State machine", text: "One shared FSM drives every move" },
       { icon: "desktop-tower", title: "Server check", text: "Client predicts, server checks speed and corrects" },
       { icon: "lightning", title: "Feel", text: "Spring camera, FOV kicks, sounds and particles" },
+    ],
+  },
+  {
+    title: "Inventory & Shop System",
+    area: "Games",
+    summary: "A server-authoritative inventory and shop for Roblox in strictly typed Luau, built to drop into any game. Items, tunables and visuals each live in one module.",
+    tags: ["Luau", "Rojo", "ProfileStore", "luau-lsp", "StyLua", "Selene"],
+    status: "In development",
+    art: "assets/img/blossom-macro.webp",
+    links: [{ label: "Source", url: "https://github.com/JMScripts1/Roblox-Inventory-System" }],
+    roadmap: [
+      { title: "Data layer", text: "Profile template and saving through ProfileStore", done: true },
+      { title: "Inventory API", text: "Public add, remove and has calls, plus an equip signal", done: true },
+      { title: "Shop", text: "Buy and sell-back, every request validated" },
+      { title: "Placeholder UI", text: "24-slot grid and equipment slots" },
+      { title: "Edge cases", text: "Full bags, low funds, spam and malformed requests" },
+      { title: "Final UI", text: "Themed styling, tooltips and drag and drop" },
     ],
   },
 ];
