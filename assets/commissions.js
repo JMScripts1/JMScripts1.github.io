@@ -5,16 +5,6 @@ const submitBtn = form.querySelector('button[type="submit"]');
 const submitLabel = submitBtn.querySelector(".submit__label");
 const notConnected = form.action.includes("YOUR_FORM_ID");
 
-// Show budget for USD/Robux, game potential questions for percentage.
-const conditional = form.querySelectorAll("[data-show-for]");
-form.querySelectorAll('input[name="payment"]').forEach((radio) => {
-  radio.addEventListener("change", () => {
-    conditional.forEach((el) => {
-      el.hidden = !el.dataset.showFor.split(" ").includes(radio.value);
-    });
-  });
-});
-
 function setError(id, message) {
   const el = document.getElementById(id);
   if (el) el.textContent = message;
@@ -44,10 +34,7 @@ function validate() {
   check(payment !== null, "f-payment-err", "Choose how you'd like to pay.", firstPayment);
 
   const game = form.game_link;
-  const gameOk = game.value.trim() === "" || game.validity.valid;
-  const gameNeeded = payment && payment.value === "Percentage" && game.value.trim() === "";
-  check(gameOk && !gameNeeded, "f-game-err",
-    gameNeeded ? "Percentage deals need a game link." : "Use a full link starting with https://", game);
+  check(game.value.trim() === "" || game.validity.valid, "f-game-err", "Use a full link starting with https://", game);
 
   const agree = form.agreed_to_terms;
   check(agree.checked, "f-agree-err", "You need to agree to the terms first.", agree);
@@ -77,11 +64,7 @@ form.addEventListener("submit", async (event) => {
   submitBtn.disabled = true;
   submitLabel.textContent = "Sending";
 
-  // Fields hidden by the payment choice shouldn't be sent.
   const data = new FormData(form);
-  conditional.forEach((el) => {
-    if (el.hidden) el.querySelectorAll("[name]").forEach((f) => data.delete(f.name));
-  });
 
   try {
     const res = await fetch(form.action, {
