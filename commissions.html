@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Commissions | Joshua Mathias</title>
-  <meta name="description" content="Roblox scripting commissions: movement, combat, UI, and game systems in Luau. Paid in USD, Robux, or a percentage.">
+  <meta name="description" content="Roblox scripting commissions: movement, combat, UI, and game systems in Luau. Fixed prices from $5, paid in USD or Robux.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#9b3760">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jmscripts1.github.io/commissions.html">
   <meta property="og:title" content="Roblox scripting commissions | Ruha.luau">
-  <meta property="og:description" content="Movement, combat, UI, and game systems in Luau. USD, Robux, or percentage.">
+  <meta property="og:description" content="Movement, combat, UI, and game systems in Luau. Fixed prices from $5, in USD or Robux.">
   <meta property="og:image" content="https://jmscripts1.github.io/assets/og-commissions-3.jpg">
   <meta property="og:image:alt" content="Roblox scripting commissions by Joshua Mathias, Ruha.luau on Discord">
   <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/sakura-branch.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/commissions.css?v=20261008b">
+  <link rel="stylesheet" href="assets/commissions.css?v=20261011">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="art cpage">
@@ -51,10 +51,10 @@
         <div class="ch__copy">
           <p class="status" data-queue-status><span class="status__dot" aria-hidden="true"></span><span data-queue-status-text>Roblox scripting commissions</span></p>
           <h1 class="ch__title">I script <span>Roblox games.</span></h1>
-          <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Tell me what you're making.</p>
+          <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Fixed prices from <span data-price-from>$5</span>.</p>
           <div class="hero__ctas">
             <a class="btn btn--primary" href="#request">Request a commission</a>
-            <a class="btn btn--glass" href="#terms">Read the terms</a>
+            <a class="btn btn--glass" href="#prices">See prices</a>
           </div>
         </div>
         <figure class="ch__me">
@@ -110,6 +110,15 @@
       </ul>
     </section>
 
+    <!-- Prices: tabbed list built from assets/prices-data.js by assets/prices.js -->
+    <section class="section wrap reveal" id="prices" aria-labelledby="prices-title">
+      <h2 class="c-title" id="prices-title">Prices</h2>
+      <p class="prices__intro">Fixed prices for short, one-off jobs. The low end is the plain version, the high end adds extras. <span data-price-launch hidden>These are launch prices while I build up reviews, so they'll go up later.</span></p>
+      <div class="prices" id="prices-board" hidden></div>
+      <p class="queue__fallback" id="prices-fallback">Message <strong>Ruha.luau</strong> on Discord for prices.</p>
+      <p class="prices__note">Not sure which one fits? Describe it in the <a href="#request">request form</a> and I'll match it to a price. Bigger projects get split into separate jobs.</p>
+    </section>
+
     <!-- Completed work: filled in from assets/work-data.js by assets/work.js, hidden while empty -->
     <section class="section wrap" id="work" aria-labelledby="work-title" hidden>
       <div class="work-head">
@@ -120,7 +129,7 @@
       <div class="work-grid" id="work-grid"></div>
     </section>
 
-    <!-- Payment: full-bleed painted band with the three options on a frosted sheet -->
+    <!-- Payment: full-bleed painted band with the two currencies and the deposit rule on a frosted sheet -->
     <section class="pay-band reveal" aria-labelledby="pay-title">
       <img class="pay-band__art" src="assets/img/blossom-paint.webp" width="900" height="895" alt="" loading="lazy">
       <div class="wrap">
@@ -130,17 +139,17 @@
             <div class="pay-opt">
               <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-currency-dollar"/></svg>
               <h3>USD</h3>
-              <p>Quoted per project once the scope is agreed.</p>
+              <p>The price from the list above, in US dollars.</p>
             </div>
             <div class="pay-opt">
               <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-coins"/></svg>
               <h3>Robux</h3>
-              <p>Same quote, paid in Robux.</p>
+              <p>About 100 Robux per $1. Roblox keeps 30% of gamepass and shirt sales, so paying that way costs about 43% more.</p>
             </div>
-            <div class="pay-opt pay-opt--pct">
-              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-percent"/></svg>
-              <h3>Percentage</h3>
-              <p>A share of the game's revenue. I need to see real potential first, so share as much about the game as you can.</p>
+            <div class="pay-opt pay-opt--split">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-handshake"/></svg>
+              <h3>When you pay</h3>
+              <p>Jobs under $20 are paid in full up front. From $20, it's 50% before I start and 50% on delivery.</p>
             </div>
           </div>
         </div>
@@ -152,10 +161,10 @@
       <h2 class="c-title" id="process-title">How it works</h2>
       <ol class="path">
         <li><span class="path__mark" aria-hidden="true"></span><strong>Request</strong><span>Send the form below with as much detail as you can.</span></li>
-        <li><span class="path__mark" aria-hidden="true"></span><strong>Quote</strong><span>We agree on scope, price, and a delivery estimate on Discord.</span></li>
-        <li><span class="path__mark" aria-hidden="true"></span><strong>Deposit</strong><span>50% up front, then I start building.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Price</strong><span>I match it to a price on the list and confirm on Discord.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Deposit</strong><span>50% up front (the full price under $20), then I start.</span></li>
         <li><span class="path__mark" aria-hidden="true"></span><strong>Build</strong><span>I share progress, and you get 2 revisions.</span></li>
-        <li><span class="path__mark" aria-hidden="true"></span><strong>Deliver</strong><span>Final 50% is paid, then you get the files.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Deliver</strong><span>Pay anything left, then you get the files.</span></li>
       </ol>
     </section>
 
@@ -171,7 +180,9 @@
           <details open>
             <summary>Payment<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
             <ul>
-              <li>50% deposit required before work begins. The remaining 50% is due on completion, before final files are delivered.</li>
+              <li>Prices come from the price list. The final price within a range is confirmed before work begins.</li>
+              <li>Jobs under $20 are paid in full before work begins.</li>
+              <li>For jobs of $20 or more, a 50% deposit is required before work begins. The remaining 50% is due on completion, before final files are delivered.</li>
               <li>Deposits are non-refundable once work has started.</li>
               <li>Full refunds are only available if you cancel before any work begins.</li>
             </ul>
@@ -179,18 +190,20 @@
           <details>
             <summary>Scope and revisions<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
             <ul>
-              <li>Project scope is agreed on before starting. Requests outside the original scope may cost extra.</li>
+              <li>I only take short, fixed-scope jobs, usually delivered in 1 to 7 days. No ongoing development, retainers, or long-term roles.</li>
+              <li>Bigger projects are split into separate jobs, each priced and paid on its own.</li>
+              <li>Scope is agreed on before starting. Requests outside the original scope are priced as a new job.</li>
               <li>2 free revisions are included per project. Further revisions are billed separately.</li>
             </ul>
           </details>
           <details>
             <summary>Priority<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-caret-down"/></svg></summary>
             <ul>
-              <li>Priority costs an extra 30% on top of the quoted price, in USD or Robux.</li>
+              <li>Priority costs an extra 30% on top of the price, in USD or Robux.</li>
               <li>Your project moves to the front of the waitlist and starts in the next open slot, ahead of standard requests.</li>
               <li>Projects already in progress are not paused or bumped for priority work.</li>
               <li>If more than one client has priority, they're served first come, first served.</li>
-              <li>The priority fee is paid up front together with the 50% deposit.</li>
+              <li>The priority fee is paid up front, together with the deposit or full payment.</li>
               <li>The priority fee is non-refundable once your project has moved ahead, unless the start is delayed more than 3 days past the priority estimate because of me. In that case the fee is refunded.</li>
               <li>Late feedback or replies from you can still push back the delivery date.</li>
             </ul>
@@ -227,7 +240,7 @@
       <div class="wrap req__inner">
         <div class="req__intro">
           <h2 class="c-title" id="request-title">Request a commission</h2>
-          <p>The more detail you give, the faster and more accurate the quote. Videos or games that show the feel you want help a lot.</p>
+          <p>The more detail you give, the faster I can confirm a price. Videos or games that show the feel you want help a lot.</p>
           <p class="req__estimate">Estimated start: <strong data-queue-estimate>ask on Discord</strong> <a href="#queue">See queue</a></p>
           <div class="discord">
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord-logo"/></svg>
@@ -286,6 +299,14 @@
         </fieldset>
 
         <div class="field">
+          <label for="f-tier">Job size</label>
+          <select id="f-tier" name="job_size" aria-describedby="f-tier-help">
+            <option value="Not sure">Not sure, help me pick</option>
+          </select>
+          <p class="field__help" id="f-tier-help">Pick the closest match from the <a href="#prices">price list</a>.</p>
+        </div>
+
+        <div class="field">
           <label for="f-details">Project details</label>
           <textarea id="f-details" name="details" rows="6" required aria-describedby="f-details-help f-details-err"></textarea>
           <p class="field__help" id="f-details-help">What should it do, how should it feel, and what already exists in your game? Include links to reference videos or games.</p>
@@ -295,7 +316,7 @@
         <div class="field">
           <label for="f-game">Game link</label>
           <input id="f-game" name="game_link" type="url" inputmode="url" placeholder="https://www.roblox.com/games/..." aria-describedby="f-game-help f-game-err">
-          <p class="field__help" id="f-game-help">Optional, but needed for percentage deals.</p>
+          <p class="field__help" id="f-game-help">Optional. Helps me see how it should fit in.</p>
           <p class="field__error" id="f-game-err"></p>
         </div>
 
@@ -304,7 +325,6 @@
           <div class="choices">
             <label class="choice"><input type="radio" name="payment" value="USD" required><span>USD</span></label>
             <label class="choice"><input type="radio" name="payment" value="Robux"><span>Robux</span></label>
-            <label class="choice"><input type="radio" name="payment" value="Percentage"><span>Percentage</span></label>
           </div>
           <p class="field__error" id="f-payment-err"></p>
         </fieldset>
@@ -317,37 +337,6 @@
               <span>Put my project at the front of the waitlist. <a href="#terms">Priority terms</a></span>
             </span>
           </label>
-        </div>
-
-        <div class="field" data-show-for="USD Robux" hidden>
-          <label for="f-budget">Budget</label>
-          <input id="f-budget" name="budget" type="text" aria-describedby="f-budget-help">
-          <p class="field__help" id="f-budget-help">A range is fine, like "$100 to $200" or "20k to 30k Robux".</p>
-        </div>
-
-        <div class="pct" data-show-for="Percentage" hidden>
-          <p class="pct__note">For percentage deals I need to see the game's potential. Tell me where it's at.</p>
-          <div class="form__grid">
-            <div class="field">
-              <label for="f-stage">Development stage</label>
-              <select id="f-stage" name="game_stage">
-                <option value="">Choose one</option>
-                <option>Idea or early prototype</option>
-                <option>In development</option>
-                <option>Released, growing</option>
-                <option>Released, established</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-share">Percentage offered</label>
-              <input id="f-share" name="percentage_offered" type="text">
-            </div>
-          </div>
-          <div class="field">
-            <label for="f-team">Team, players, and plans</label>
-            <textarea id="f-team" name="game_potential" rows="4" aria-describedby="f-team-help"></textarea>
-            <p class="field__help" id="f-team-help">Team size and roles, current visits or CCU if released, and how you plan to grow and monetize it.</p>
-          </div>
         </div>
 
         <div class="field">
@@ -392,6 +381,8 @@
   <script src="assets/work-data.js" defer></script>
   <script src="assets/work.js" defer></script>
   <script src="assets/music.js" defer></script>
-  <script src="assets/commissions.js" defer></script>
+  <script src="assets/prices-data.js?v=20261011" defer></script>
+  <script src="assets/prices.js?v=20261011" defer></script>
+  <script src="assets/commissions.js?v=20261011" defer></script>
 </body>
 </html>
