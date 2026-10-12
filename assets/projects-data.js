@@ -109,7 +109,7 @@ window.PROJECTS = [
     roadmap: [
       { title: "Data layer", text: "Profile template and saving through ProfileStore", done: true },
       { title: "Inventory API", text: "Public add, remove and has calls, plus an equip signal", done: true },
-      { title: "Shop", text: "Buy and sell-back, every request validated" },
+      { title: "Shop", text: "Buy and sell-back, every request validated", done: true },
       { title: "Placeholder UI", text: "24-slot grid and equipment slots" },
       { title: "Edge cases", text: "Full bags, low funds, spam and malformed requests" },
       { title: "Final UI", text: "Themed styling, tooltips and drag and drop" },
