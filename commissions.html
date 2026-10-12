@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/sakura-branch.webp" as="image">
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/commissions.css?v=20261011">
+  <link rel="stylesheet" href="assets/commissions.css?v=20261012">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="art cpage">
@@ -51,7 +51,7 @@
         <div class="ch__copy">
           <p class="status" data-queue-status><span class="status__dot" aria-hidden="true"></span><span data-queue-status-text>Roblox scripting commissions</span></p>
           <h1 class="ch__title">I script <span>Roblox games.</span></h1>
-          <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Fixed prices from <span data-price-from>$5</span>.</p>
+          <p class="ch__sub">Movement, combat, UI, and the systems underneath them, written in Luau. Short jobs at fixed prices from <span data-price-from>$5</span>.</p>
           <div class="hero__ctas">
             <a class="btn btn--primary" href="#request">Request a commission</a>
             <a class="btn btn--glass" href="#prices">See prices</a>
@@ -68,7 +68,7 @@
     <section class="section wrap reveal" id="queue" aria-labelledby="queue-title">
       <h2 class="c-title" id="queue-title">Current queue</h2>
       <div class="queue" id="queue-board" aria-live="polite">
-        <p class="queue__fallback">Message <strong>Ruha.luau</strong> on Discord for current availability.</p>
+        <p class="queue__fallback">Send a <a href="#request">request</a> and I'll confirm when I can start.</p>
       </div>
     </section>
 
@@ -115,7 +115,7 @@
       <h2 class="c-title" id="prices-title">Prices</h2>
       <p class="prices__intro">Fixed prices for short, one-off jobs. The low end is the plain version, the high end adds extras. <span data-price-launch hidden>These are launch prices while I build up reviews, so they'll go up later.</span></p>
       <div class="prices" id="prices-board" hidden></div>
-      <p class="queue__fallback" id="prices-fallback">Message <strong>Ruha.luau</strong> on Discord for prices.</p>
+      <p class="queue__fallback" id="prices-fallback">Describe your job in the <a href="#request">request form</a> and I'll send you a price.</p>
       <p class="prices__note">Not sure which one fits? Describe it in the <a href="#request">request form</a> and I'll match it to a price. Bigger projects get split into separate jobs.</p>
     </section>
 
@@ -160,7 +160,7 @@
     <section class="section wrap reveal" aria-labelledby="process-title">
       <h2 class="c-title" id="process-title">How it works</h2>
       <ol class="path">
-        <li><span class="path__mark" aria-hidden="true"></span><strong>Request</strong><span>Send the form below with as much detail as you can.</span></li>
+        <li><span class="path__mark" aria-hidden="true"></span><strong>Request</strong><span>Send the form below. Form requests are answered before DMs.</span></li>
         <li><span class="path__mark" aria-hidden="true"></span><strong>Price</strong><span>I match it to a price on the list and confirm on Discord.</span></li>
         <li><span class="path__mark" aria-hidden="true"></span><strong>Deposit</strong><span>50% up front (the full price under $20), then I start.</span></li>
         <li><span class="path__mark" aria-hidden="true"></span><strong>Build</strong><span>I share progress, and you get 2 revisions.</span></li>
@@ -241,11 +241,21 @@
         <div class="req__intro">
           <h2 class="c-title" id="request-title">Request a commission</h2>
           <p>The more detail you give, the faster I can confirm a price. Videos or games that show the feel you want help a lot.</p>
-          <p class="req__estimate">Estimated start: <strong data-queue-estimate>ask on Discord</strong> <a href="#queue">See queue</a></p>
+          <ul class="req__rules">
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-paper-plane-tilt"/></svg>
+              <div><strong>Form requests get answered first</strong><span>I go through these before Discord DMs. If you DM me first, I'll most likely send you back here.</span></div>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clock-countdown"/></svg>
+              <div><strong>Short jobs only right now</strong><span>No long-term, ongoing, or team roles. Bigger projects get split into separate jobs.</span></div>
+            </li>
+          </ul>
+          <p class="req__estimate">Estimated start: <strong data-queue-estimate>see the queue</strong> <a href="#queue">See queue</a></p>
           <div class="discord">
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord-logo"/></svg>
             <div>
-              <span class="discord__label">Prefer Discord?</span>
+              <span class="discord__label">I'll reply on Discord from</span>
               <button class="discord__copy copy" type="button" data-copy="Ruha.luau">
                 <span class="copy__label">Ruha.luau</span>
                 <svg class="icon copy__icon" aria-hidden="true"><use href="assets/icons.svg#i-copy"/></svg>
@@ -376,7 +386,7 @@
 
   <script src="assets/main.js" defer></script>
   <script src="assets/engine.js" defer></script>
-  <script src="assets/queue-data.js" defer></script>
+  <script src="assets/queue-data.js?v=20261012" defer></script>
   <script src="assets/queue.js" defer></script>
   <script src="assets/work-data.js" defer></script>
   <script src="assets/work.js" defer></script>
