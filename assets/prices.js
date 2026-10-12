@@ -18,6 +18,7 @@
   };
   const minOf = (c) => Math.min(...c.tiers.map((t) => Number(t.min) || 0));
 
+  document.querySelectorAll("[data-robux-rate]").forEach((el) => { el.textContent = rate.toLocaleString("en-US"); });
   document.querySelectorAll("[data-price-launch]").forEach((el) => { el.hidden = !data.launch; });
   document.querySelectorAll("[data-price-from]").forEach((el) => { el.textContent = `$${Math.min(...cats.map(minOf))}`; });
 
