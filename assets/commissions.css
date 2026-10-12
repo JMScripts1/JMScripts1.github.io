@@ -708,3 +708,19 @@ a.wk__media img { transition: transform 0.8s var(--ease); }
   .tier { grid-template-columns: 1fr; padding: 18px; }
   .tier__price { justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 10px; }
 }
+
+/* ---------- Request rules: form-first and short-jobs notes above the estimate ---------- */
+.req__rules { margin-top: 26px; display: grid; gap: 10px; max-width: 44ch; }
+.req__rules li {
+  display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
+  padding: 14px 16px; border-radius: 16px;
+  background: var(--sheet); border: 1px solid var(--sheet-line);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.req__rules li:first-child { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+.req__rules .icon { width: 22px; height: 22px; margin-top: 1px; color: var(--accent); }
+.req__rules strong { display: block; font-weight: 600; color: var(--text); }
+.req__rules li:first-child strong { color: var(--accent-soft-ink); }
+.req__rules span { display: block; margin-top: 2px; font-size: 0.9375rem; color: color-mix(in srgb, var(--text) 72%, var(--muted)); }
+@media (prefers-reduced-transparency: reduce) { .req__rules li { background: var(--bg); } }
+.queue__fallback a { color: var(--accent); font-weight: 500; }

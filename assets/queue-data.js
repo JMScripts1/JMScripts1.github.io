@@ -39,7 +39,7 @@ window.COMMISSIONS = {
   priority: { available: true, fee: "+30% of the quote" },
 
   // Optional short message shown with the queue. Leave "" for none.
-  note: "",
+  note: "Short jobs only. Not taking long-term work right now.",
 
   // Change this whenever you edit the file, so visitors know it's current.
   updated: "2026-10-07",
