@@ -11,7 +11,8 @@
     3. Click "Commit changes". The site updates in about a minute.
 
   Fields:
-    robuxPerDollar  how many Robux count as $1 (Robux prices are worked out from this)
+    robuxPerDollar  how many Robux count as $1 (Robux prices are worked out from this).
+                    300 matches the DevEx cash-out rate most scripters use
     launch          true shows the "launch prices" note. Set to false once you raise prices
     categories      one per service. Each has:
       title         shown on the tab
@@ -24,7 +25,7 @@
   ============================================================
 */
 window.PRICES = {
-  robuxPerDollar: 100,
+  robuxPerDollar: 300,
   launch: true,
   categories: [
     {
