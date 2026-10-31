@@ -26,8 +26,8 @@
   };
 
   function card(p, i) {
-    const art = safeUrl(p.art), img = safeUrl(p.image);
-    const links = (Array.isArray(p.links) ? p.links : [])
+    const art = safeUrl(p.art), img = safeUrl(p.image), imgDark = safeUrl(p.imageDark), site = safeUrl(p.site);
+    const links = [...(site ? [{ label: "Live page", url: site }] : []), ...(Array.isArray(p.links) ? p.links : [])]
       .filter((l) => l && safeUrl(l.url))
       .map((l) => `<a class="pj__link" href="${esc(safeUrl(l.url))}"${/^https?:/i.test(l.url) ? ' target="_blank" rel="noopener"' : ""}>${esc(l.label || "Open")}<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg></a>`)
       .join("");
@@ -61,7 +61,7 @@
     return `
       <article class="pj ${layout(i)}${art ? " pj--art" : ""}${img ? " pj--img" : ""}${roadmap ? " pj--road" : ""}" data-area="${slug(p.area)}">
         ${art ? `<img class="pj__art" src="${esc(art)}" alt="" loading="lazy">` : ""}
-        ${img ? `<a class="pj__shot" href="${esc(img)}" target="_blank" rel="noopener"><img src="${esc(img)}" alt="Screenshot of ${esc(p.title)}" loading="lazy"></a>` : ""}
+        ${img ? `<a class="pj__shot${site ? " pj__shot--site" : ""}" href="${esc(site || img)}" target="_blank" rel="noopener"${site ? ` aria-label="Open the ${esc(p.title)} page"` : ""}><picture>${imgDark ? `<source srcset="${esc(imgDark)}" media="(prefers-color-scheme: dark)">` : ""}<img src="${esc(img)}" alt="Screenshot of ${esc(p.title)}" loading="lazy"></picture></a>` : ""}
         <div class="pj__body">
           <div class="tile__head">
             <h3 class="tile__title">${esc(p.title)}</h3>

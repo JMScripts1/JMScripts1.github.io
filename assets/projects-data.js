@@ -21,6 +21,9 @@
     tags      tech used, shown as small chips: ["Python", "SQLite"]
     links     buttons: [{ label: "Source", url: "https://github.com/..." }]
     image     optional screenshot
+    imageDark optional dark mode version of the screenshot
+    site      optional live page. The screenshot links here and a
+              "Live page" button is added before your other links.
     steps     optional "how it works" row (looks best on the first project):
               [{ icon: "database", title: "Stores", text: "..." }]
               icons you can use: desktop-tower, database, ticket, bell-ringing,
@@ -53,6 +56,9 @@ window.PROJECTS = [
     area: "Backend & data",
     summary: "A Python pipeline pulls PC game prices from a public REST API and saves timestamped snapshots to SQLite.",
     tags: ["Python", "SQL", "SQLite", "Pandas", "Plotly Dash"],
+    site: "https://jmscripts1.github.io/game-deal-tracker/",
+    image: "assets/projects/game-deal-tracker-light.webp",
+    imageDark: "assets/projects/game-deal-tracker-dark.webp",
     links: [{ label: "Source", url: "https://github.com/JMScripts1/game-deal-tracker" }],
     facts: [
       { label: "Storage", value: "3-table SQLite schema" },
