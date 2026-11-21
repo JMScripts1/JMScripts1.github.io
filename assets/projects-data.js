@@ -31,7 +31,7 @@
     facts     optional label/value pairs: [{ label: "Storage", value: "SQLite" }]
     status    optional, e.g. "In progress" (shows a small tag)
     art       optional background painting for a project without screenshots,
-              e.g. "assets/img/blossom-paint.webp"
+              e.g. "assets/img/starfield.webp"
     roadmap   optional milestone track for a project in progress. Mark finished
               ones with done: true; the first unfinished one shows as "Up next":
               [{ title: "Data layer", text: "...", done: true }]
@@ -61,8 +61,7 @@ window.PROJECTS = [
     summary: "An automated pipeline pulls PC game prices from a public REST API into a normalized SQLite database, and SQL queries feed a Plotly Dash dashboard.",
     tags: ["Python", "SQL", "SQLite", "Pandas", "Plotly Dash"],
     site: "https://jmscripts1.github.io/game-deal-tracker/",
-    image: "assets/projects/game-deal-tracker-light.webp",
-    imageDark: "assets/projects/game-deal-tracker-dark.webp",
+    image: "assets/projects/game-deal-tracker-dark.webp",
     links: [{ label: "Source", url: "https://github.com/JMScripts1/game-deal-tracker" }],
     facts: [
       { label: "Storage", value: "3-table SQLite schema" },
