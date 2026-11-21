@@ -42,7 +42,7 @@ window.PROJECTS = [
     title: "OpsWatch",
     area: "Systems & DevOps",
     status: "In progress",
-    summary: "Self-hosted IT health monitoring modelled on the remote monitoring tools managed service providers use. Linux and Windows agents report to a FastAPI server over HTTPS.",
+    summary: "Self-hosted IT health monitoring modelled on the remote monitoring tools managed service providers use. Linux and Windows agents report to a FastAPI server over outbound HTTPS with token authentication.",
     tags: ["Python", "FastAPI", "PostgreSQL", "Docker Compose", "GitHub Actions", "PowerShell", "pytest"],
     links: [{ label: "Source", url: "https://github.com/JMScripts1/opswatch" }],
     steps: [
@@ -52,20 +52,21 @@ window.PROJECTS = [
       { icon: "bell-ringing", title: "Alerts send", text: "Discord or Slack, plus a daily summary" },
     ],
     facts: [
-      { label: "CI", value: "Lint, pytest and a Docker build on every push" },
+      { label: "CI", value: "Ruff lint, pytest and a Docker build on every push" },
     ],
   },
   {
     title: "Game Deal Tracker",
     area: "Backend & data",
-    summary: "An automated pipeline pulls PC game prices from a public REST API into a normalized SQLite database, and SQL queries feed a Plotly Dash dashboard.",
-    tags: ["Python", "SQL", "SQLite", "Pandas", "Plotly Dash"],
+    summary: "Tracks prices across 30+ PC game stores through the CheapShark API, stores timestamped snapshots in SQLite, and sends a Discord alert when a watched game hits its target price.",
+    tags: ["Python", "SQL", "SQLite", "pandas", "Streamlit", "pytest", "GitHub Actions"],
     site: "https://jmscripts1.github.io/game-deal-tracker/",
     image: "assets/projects/game-deal-tracker-dark.webp",
     links: [{ label: "Source", url: "https://github.com/JMScripts1/game-deal-tracker" }],
     facts: [
-      { label: "Storage", value: "3-table SQLite schema" },
-      { label: "Dashboard", value: "Top deals, store comparisons, price trends" },
+      { label: "Storage", value: "5-table SQLite schema" },
+      { label: "Dashboard", value: "Streamlit: deals, price history, store comparisons, watchlist" },
+      { label: "CI", value: "pytest with mocked API responses, Python 3.10 to 3.14" },
     ],
   },
 ];
