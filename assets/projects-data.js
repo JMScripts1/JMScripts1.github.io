@@ -21,6 +21,7 @@
     tags      tech used, shown as small chips: ["Python", "SQLite"]
     links     buttons: [{ label: "Source", url: "https://github.com/..." }]
     image     optional screenshot
+    imageAlt  optional description of the screenshot for screen readers
     imageDark optional dark mode version of the screenshot
     site      optional live page. The screenshot links here and a
               "Live page" button is added before your other links.
@@ -45,6 +46,8 @@ window.PROJECTS = [
     summary: "Self-hosted IT health monitoring modelled on the remote monitoring tools managed service providers use. Linux and Windows agents report to a FastAPI server over outbound HTTPS with token authentication.",
     tags: ["Python", "FastAPI", "PostgreSQL", "Docker Compose", "GitHub Actions", "PowerShell", "pytest"],
     links: [{ label: "Source", url: "https://github.com/JMScripts1/opswatch" }],
+    image: "assets/projects/opswatch-terminal.webp",
+    imageAlt: "Terminal output from OpsWatch: demo agents open four tickets for full disks and stale backups, then a healthy disk report closes ticket 1 automatically",
     steps: [
       { icon: "desktop-tower", title: "Agents check", text: "Disk, services, backup age, TLS expiry, pending updates" },
       { icon: "database", title: "Server stores", text: "FastAPI and PostgreSQL, run with Docker Compose" },
@@ -61,7 +64,8 @@ window.PROJECTS = [
     summary: "Tracks prices across 30+ PC game stores through the CheapShark API, stores timestamped snapshots in SQLite, and sends a Discord alert when a watched game hits its target price.",
     tags: ["Python", "SQL", "SQLite", "pandas", "Streamlit", "pytest", "GitHub Actions"],
     site: "https://jmscripts1.github.io/game-deal-tracker/",
-    image: "assets/projects/game-deal-tracker-dark.webp",
+    image: "assets/projects/game-deal-tracker-dashboard.webp",
+    imageAlt: "The Game Deal Tracker dashboard: biggest price drop right now, sale counts, and watchlist games under their target price",
     links: [{ label: "Source", url: "https://github.com/JMScripts1/game-deal-tracker" }],
     facts: [
       { label: "Storage", value: "5-table SQLite schema" },

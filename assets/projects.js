@@ -63,7 +63,7 @@
     return `
       <article class="pj ${layout(i)}${art ? " pj--art" : ""}${img ? " pj--img" : ""}${roadmap ? " pj--road" : ""}" data-area="${slug(p.area)}">
         ${art ? `<img class="pj__art" src="${esc(art)}" alt="" loading="lazy">` : ""}
-        ${img ? `<a class="pj__shot${site ? " pj__shot--site" : ""}" href="${esc(site || img)}" target="_blank" rel="noopener"${site ? ` aria-label="Open the ${esc(p.title)} page"` : ""}><picture>${imgDark ? `<source srcset="${esc(imgDark)}" media="(prefers-color-scheme: dark)">` : ""}<img src="${esc(img)}" alt="Screenshot of ${esc(p.title)}" loading="lazy"></picture></a>` : ""}
+        ${img ? `<a class="pj__shot${site ? " pj__shot--site" : ""}" href="${esc(site || img)}" target="_blank" rel="noopener"${site ? ` aria-label="Open the ${esc(p.title)} page"` : ""}><picture>${imgDark ? `<source srcset="${esc(imgDark)}" media="(prefers-color-scheme: dark)">` : ""}<img src="${esc(img)}" alt="${esc(p.imageAlt || "Screenshot of " + p.title)}" loading="lazy"></picture></a>` : ""}
         <div class="pj__body">
           <div class="tile__head">
             <h3 class="tile__title">${esc(p.title)}</h3>

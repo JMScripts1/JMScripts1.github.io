@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Joshua Mathias</title>
-  <meta name="description" content="Computer Science student at Ontario Tech focused on backend and cloud infrastructure with Python, Docker, PostgreSQL and SQL. Seeking a Winter 2027 co-op.">
+  <meta name="description" content="Computer Science student at Ontario Tech focused on backend and cloud infrastructure with Python, Docker, PostgreSQL and SQL. Seeking a Summer 2027 internship.">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0a0a0b">
 
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jmscripts1.github.io/">
   <meta property="og:title" content="Joshua Mathias">
-  <meta property="og:description" content="CS student at Ontario Tech. Backend and cloud infrastructure with Python, Docker, PostgreSQL and SQL. Seeking a Winter 2027 co-op.">
+  <meta property="og:description" content="CS student at Ontario Tech. Backend and cloud infrastructure with Python, Docker, PostgreSQL and SQL. Seeking a Summer 2027 internship.">
   <meta property="og:image" content="https://jmscripts1.github.io/assets/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -21,8 +21,8 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/starfield.webp" as="image">
-  <link rel="stylesheet" href="assets/style.css?v=20261121e">
-  <link rel="stylesheet" href="assets/home.css?v=20261121e">
+  <link rel="stylesheet" href="assets/style.css?v=20261121f">
+  <link rel="stylesheet" href="assets/home.css?v=20261121f">
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="art home">
@@ -43,7 +43,7 @@
 
   <main id="main">
     <section class="hh" id="top">
-      <img class="hh__art" src="assets/img/starfield.webp" width="736" height="414" alt="" fetchpriority="high">
+      <img class="hh__art" src="assets/img/starfield.webp" width="1600" height="900" alt="" fetchpriority="high">
       <canvas class="hh__canvas" data-sky aria-hidden="true"></canvas>
       <div class="hero wrap">
       <div class="hero__copy">
@@ -64,7 +64,7 @@
         <ul class="now__list">
           <li>
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-handshake"/></svg>
-            <span>Looking for a Winter 2027 co-op in backend or infrastructure</span>
+            <span>Looking for a Summer 2027 internship in backend or infrastructure</span>
           </li>
           <li>
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-desktop-tower"/></svg>
@@ -74,7 +74,7 @@
         </aside>
       </div>
       </div>
-      <p class="hud" aria-hidden="true">
+      <p class="hud" aria-hidden="true" hidden>
         <span>night sky</span>
         <span><b data-hud="fps">60</b> fps</span>
         <span><b data-hud="stars">0</b> stars</span>
@@ -86,147 +86,47 @@
     <section class="section wrap reveal" id="projects" aria-labelledby="projects-title">
       <h2 class="section__title" id="projects-title">Projects</h2>
       <div class="work-filters" id="projects-filters" role="group" aria-label="Filter projects" hidden></div>
-      <!-- Built from assets/projects-data.js by assets/projects.js; the cards below are the fallback -->
+      <!-- Built from assets/projects-data.js by assets/projects.js. The cards below are a pre-rendered copy for visitors and crawlers without JavaScript; re-copy them after editing the data file. -->
 
-      <div class="bento" id="projects-grid">
-        <article class="tile tile--feature">
+      <div class="pgrid" id="projects-grid">
+        <article class="pj c2-span2 c3-span3 pj--img" data-area="systems-devops">
+        
+        <a class="pj__shot" href="assets/projects/opswatch-terminal.webp" target="_blank" rel="noopener"><picture><img src="assets/projects/opswatch-terminal.webp" alt="Terminal output from OpsWatch: demo agents open four tickets for full disks and stale backups, then a healthy disk report closes ticket 1 automatically" loading="lazy"></picture></a>
+        <div class="pj__body">
           <div class="tile__head">
             <h3 class="tile__title">OpsWatch</h3>
-            <a class="tile__link" href="https://github.com/JMScripts1/opswatch" target="_blank" rel="noopener">
-              Source<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg>
-            </a>
+            <div class="pj__links"><a class="pj__link" href="https://github.com/JMScripts1/opswatch" target="_blank" rel="noopener">Source<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"></use></svg></a></div>
           </div>
-          <p class="tile__body">Self-hosted health monitoring for small IT environments, modeled on the tools managed service providers use every day.</p>
-
-          <ol class="flow" aria-label="How OpsWatch works">
-            <li class="flow__step">
-              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-desktop-tower"/></svg>
-              <strong>Agents check</strong>
-              <span>Disk, services, backups, TLS certs, OS updates</span>
-            </li>
-            <li class="flow__step">
-              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-database"/></svg>
-              <strong>Server stores</strong>
-              <span>Agents push results, no inbound ports needed</span>
-            </li>
-            <li class="flow__step">
-              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-ticket"/></svg>
-              <strong>Tickets track</strong>
-              <span>One ticket per problem, closed once it clears</span>
-            </li>
-            <li class="flow__step">
-              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-bell-ringing"/></svg>
-              <strong>Alerts send</strong>
-              <span>Discord or Slack, plus a daily summary</span>
-            </li>
-          </ol>
-
-          <ul class="chips" aria-label="Built with">
-            <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Docker Compose</li><li>GitHub Actions</li><li>pytest</li>
-          </ul>
-        </article>
-
-        <article class="tile tile--tall">
+          <p class="pj__area">Systems &amp; DevOps<span class="pj__status">In progress</span></p>
+          <p class="tile__body">Self-hosted IT health monitoring modelled on the remote monitoring tools managed service providers use. Linux and Windows agents report to a FastAPI server over outbound HTTPS with token authentication.</p>
+          <ol class="flow pj__flow" aria-label="How OpsWatch works">
+          <li class="flow__step"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-desktop-tower"></use></svg><strong>Agents check</strong><span>Disk, services, backup age, TLS expiry, pending updates</span></li>
+          <li class="flow__step"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-database"></use></svg><strong>Server stores</strong><span>FastAPI and PostgreSQL, run with Docker Compose</span></li>
+          <li class="flow__step"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-ticket"></use></svg><strong>Rules engine</strong><span>One ticket per problem, escalated, closed once it clears</span></li>
+          <li class="flow__step"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-bell-ringing"></use></svg><strong>Alerts send</strong><span>Discord or Slack, plus a daily summary</span></li></ol><dl class="facts"><div><dt>CI</dt><dd>Ruff lint, pytest and a Docker build on every push</dd></div></dl><ul class="chips" aria-label="Built with"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Docker Compose</li><li>GitHub Actions</li><li>PowerShell</li><li>pytest</li></ul>
+        </div>
+      </article>
+        <article class="pj c2-span2 c3-span3 pj--img" data-area="backend-data">
+        
+        <a class="pj__shot pj__shot--site" href="https://jmscripts1.github.io/game-deal-tracker/" target="_blank" rel="noopener" aria-label="Open the Game Deal Tracker page"><picture><img src="assets/projects/game-deal-tracker-dashboard.webp" alt="The Game Deal Tracker dashboard: biggest price drop right now, sale counts, and watchlist games under their target price" loading="lazy"></picture></a>
+        <div class="pj__body">
           <div class="tile__head">
             <h3 class="tile__title">Game Deal Tracker</h3>
-            <a class="tile__link" href="https://jmscripts1.github.io/game-deal-tracker/" target="_blank" rel="noopener">
-              Live page<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg>
-            </a>
+            <div class="pj__links"><a class="pj__link" href="https://jmscripts1.github.io/game-deal-tracker/" target="_blank" rel="noopener">Live page<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"></use></svg></a><a class="pj__link" href="https://github.com/JMScripts1/game-deal-tracker" target="_blank" rel="noopener">Source<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"></use></svg></a></div>
           </div>
+          <p class="pj__area">Backend &amp; data</p>
           <p class="tile__body">Tracks prices across 30+ PC game stores through the CheapShark API, stores timestamped snapshots in SQLite, and sends a Discord alert when a watched game hits its target price.</p>
-          <dl class="facts">
-            <div><dt>Storage</dt><dd>5-table SQLite schema</dd></div>
-            <div><dt>Dashboard</dt><dd>Streamlit: deals, price history, store comparisons, watchlist</dd></div>
-          </dl>
-          <ul class="chips" aria-label="Built with">
-            <li>Python</li><li>SQL</li><li>SQLite</li><li>pandas</li><li>Streamlit</li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="section wrap about reveal" id="about" aria-labelledby="about-title">
-      <div class="about__text">
-        <h2 class="section__title" id="about-title">About</h2>
-        <p>I work on backend and infrastructure: APIs, databases, containers and the CI pipelines around them.</p>
-        <p>That started at Personal Touch Computers, a managed IT services provider, where I supported about 40 small and medium-sized businesses and imaged around 100 devices. OpsWatch is my take on the monitoring tools I used there.</p>
-        <p>Off the clock I make soul beats, cut the occasional edit, read a lot of manhwa and manga, and lift.</p>
-        <div class="offclock">
-          <figure class="offclock__item">
-            <div class="beat" data-peaks="0.77,1.0,0.87,0.93,0.71,0.81,0.4,0.45,0.67,0.73,0.85,0.81,0.75,0.71,0.3,0.56,0.73,0.75,0.89,0.75,0.79,0.71,0.27,0.6,0.75,0.75,0.91,0.77,0.77,0.63,0.28,0.69,0.77,0.81,0.89,0.73,0.77,0.45,0.45,0.69,0.77,0.87,0.87,0.81,0.81,0.33,0.44,0.25">
-              <audio src="assets/about/beat.mp3" preload="none"></audio>
-              <div class="beat__head">
-                <button class="beat__play" type="button" aria-label="Play beat">
-                  <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play-fill"/></svg>
-                </button>
-                <div class="beat__info">
-                  <strong>Last Dive</strong>
-                  <span class="beat__time"><span data-beat-now>0:00</span> / 1:22</span>
-                </div>
-              </div>
-              <div class="beat__wave" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="82" aria-valuenow="0"></div>
-            </div>
-          </figure>
-          <figure class="offclock__item">
-            <button class="edit" type="button" aria-label="Play edit with sound">
-              <video poster="assets/about/edit-poster.jpg" playsinline preload="none">
-                <source src="assets/about/edit.webm" type="video/webm">
-                <source src="assets/about/edit.mp4" type="video/mp4">
-              </video>
-              <span class="edit__play"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-play-fill"/></svg></span>
-            </button>
-          </figure>
+          <dl class="facts"><div><dt>Storage</dt><dd>5-table SQLite schema</dd></div><div><dt>Dashboard</dt><dd>Streamlit: deals, price history, store comparisons, watchlist</dd></div><div><dt>CI</dt><dd>pytest with mocked API responses, Python 3.10 to 3.14</dd></div></dl><ul class="chips" aria-label="Built with"><li>Python</li><li>SQL</li><li>SQLite</li><li>pandas</li><li>Streamlit</li><li>pytest</li><li>GitHub Actions</li></ul>
         </div>
-      </div>
-
-      <ol class="timeline" aria-label="Education and experience">
-        <li>
-          <span class="timeline__when">Expected Apr 2029</span>
-          <strong>Ontario Tech University</strong>
-          <span>BSc Computer Science</span>
-        </li>
-        <li>
-          <span class="timeline__when">Sep 2023 to Feb 2024</span>
-          <strong>IT Support &amp; Systems Co-op, Personal Touch Computers</strong>
-          <span>Service desk, device imaging, Microsoft 365, backups</span>
-        </li>
-        <li>
-          <span class="timeline__when">Jun 2023 to Nov 2026</span>
-          <strong>Court Monitor &amp; Guest Services, Flying Squirrel Sports</strong>
-          <span>Part-time alongside school</span>
-        </li>
-      </ol>
-    </section>
-
-    <section class="section wrap reveal" id="tools" aria-labelledby="tools-title">
-      <h2 class="section__title" id="tools-title">Tools</h2>
-      <div class="stack">
-        <div class="stack__row">
-          <h3>Languages</h3>
-          <ul class="chips chips--lg"><li>Python</li><li>SQL</li><li>C++</li><li>Java</li><li>Bash</li><li>PowerShell</li><li>HTML and CSS</li></ul>
-        </div>
-        <div class="stack__row">
-          <h3>Backend and data</h3>
-          <ul class="chips chips--lg"><li>FastAPI</li><li>SQLAlchemy</li><li>PostgreSQL</li><li>SQLite</li><li>REST APIs</li><li>pandas</li><li>Streamlit</li></ul>
-        </div>
-        <div class="stack__row">
-          <h3>Infrastructure</h3>
-          <ul class="chips chips--lg"><li>Docker</li><li>Docker Compose</li><li>GitHub Actions</li><li>Linux</li><li>systemd</li><li>Windows Server</li><li>Microsoft 365</li></ul>
-        </div>
-        <div class="stack__row">
-          <h3>Tools</h3>
-          <ul class="chips chips--lg"><li>Git</li><li>pytest</li><li>Ruff</li><li>VS Code</li></ul>
-        </div>
-      </div>
+      </article></div>
     </section>
 
 
     <section class="contact-band reveal" id="contact" aria-labelledby="contact-title">
-      <img class="contact-band__art" src="assets/img/star-band.webp" width="1472" height="484" alt="" loading="lazy">
+      <img class="contact-band__art" src="assets/img/star-band.webp" width="1600" height="530" alt="" loading="lazy">
       <div class="wrap contact">
-      <h2 class="contact__title" id="contact-title">Hiring for Winter 2027?</h2>
-      <p class="contact__sub">I'm looking for a backend, cloud or infrastructure co-op. Happy to talk about Python, Docker and SQL, or a PC that won't boot.</p>
+      <h2 class="contact__title" id="contact-title">Hiring for Summer 2027?</h2>
+      <p class="contact__sub">I'm looking for a backend, cloud or infrastructure internship. Happy to talk about Python, Docker and SQL, or a PC that won't boot.</p>
       <div class="contact__actions">
         <a class="btn btn--primary" href="mailto:joshmwork12@gmail.com">
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-envelope-simple"/></svg>Email me
@@ -250,12 +150,12 @@
 
   <footer class="footer wrap">
     <p>&copy; <span id="year">2026</span> Joshua Mathias</p>
-    <p class="footer__credit">Background artwork belongs to its original artists.</p>
+    <p class="footer__credit">Profile illustration belongs to its original artist.</p>
   </footer>
 
   <script src="assets/main.js" defer></script>
-  <script src="assets/engine.js?v=20261121c" defer></script>
-  <script src="assets/projects-data.js?v=20261121e" defer></script>
-  <script src="assets/projects.js?v=20261121e" defer></script>
+  <script src="assets/engine.js?v=20261121f" defer></script>
+  <script src="assets/projects-data.js?v=20261121f" defer></script>
+  <script src="assets/projects.js?v=20261121f" defer></script>
 </body>
 </html>

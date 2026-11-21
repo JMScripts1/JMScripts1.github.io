@@ -14,6 +14,7 @@
     stars: document.querySelector("[data-hud=stars]"),
     meteors: document.querySelector("[data-hud=meteors]"),
   };
+  const hudEl = document.querySelector(".hud");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let w = 0, h = 0, dpr = 1;
@@ -156,6 +157,7 @@
     nextMeteor = last + 600;
     frames = 0;
     raf = requestAnimationFrame(frame);
+    if (hudEl) hudEl.hidden = false; // the readout only appears once there is something to count
   }
   function stop() { running = false; cancelAnimationFrame(raf); }
 
@@ -198,7 +200,9 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => { resize(); if (!running) render(); }, 120);
   });
-  reduce.addEventListener("change", () => (reduce.matches ? (stop(), stillFrame()) : start()));
+  reduce.addEventListener("change", () => {
+    if (reduce.matches) { stop(); stillFrame(); if (hudEl) hudEl.hidden = true; } else start();
+  });
 
   resize();
   if (reduce.matches) stillFrame(); else start();
