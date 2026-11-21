@@ -16,7 +16,7 @@ if ("IntersectionObserver" in window) {
   reveals.forEach((el) => el.classList.add("is-in"));
 }
 
-// Copy buttons (email, Discord username), with a short confirmation.
+// Copy buttons (email), with a short confirmation.
 document.querySelectorAll(".copy").forEach((btn) => {
   const label = btn.querySelector(".copy__label");
   const icon = btn.querySelector(".copy__icon use");

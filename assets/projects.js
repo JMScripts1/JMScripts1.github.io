@@ -7,7 +7,7 @@
   if (!grid || !list.length) return;
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  // Web links, files in the site, or another page of the site (e.g. "commissions.html#work").
+  // Web links, files in the site, or another page of the site (e.g. "notes.html#intro").
   const safeUrl = (u) => { const s = String(u || "").trim(); return /^(https?:\/\/|assets\/|[\w-]+\.html(#[\w-]+)?$)/i.test(s) ? s : ""; };
   const ICONS = new Set(["desktop-tower", "database", "ticket", "bell-ringing", "chart-line-up", "cpu", "code", "game-controller", "wrench", "lightning", "check-circle", "clock-countdown"]);
   const icon = (name, cls = "icon") => `<svg class="${cls}" aria-hidden="true"><use href="assets/icons.svg#i-${ICONS.has(name) ? name : "code"}"/></svg>`;
@@ -18,6 +18,8 @@
   // an odd count makes the first card span both.
   const n = list.length;
   const layout = (i) => {
+    // One or two projects: each gets its own full-width row.
+    if (n <= 2) return "c2-span2 c3-span3";
     const c = [];
     if ((n % 3 === 2 || (n % 3 === 0 && n >= 3)) && i === 0) c.push("c3-span2");
     if ((n % 3 === 1 || (n % 3 === 0 && n >= 3)) && i === n - 1) c.push("c3-span3");

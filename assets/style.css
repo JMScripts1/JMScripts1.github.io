@@ -168,7 +168,7 @@ a { color: inherit; }
 .bento {
   display: grid; gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-areas: "feature feature tall" "accent accent tall";
+  grid-template-areas: "feature feature tall";
 }
 .tile {
   border-radius: var(--radius); padding: 28px;
@@ -218,7 +218,7 @@ a { color: inherit; }
 .chips--lg li { font-size: 0.875rem; padding: 8px 14px; color: var(--text); background: var(--surface); border-color: transparent; }
 
 @media (max-width: 899px) {
-  .bento { grid-template-columns: 1fr; grid-template-areas: "feature" "tall" "accent"; }
+  .bento { grid-template-columns: 1fr; grid-template-areas: "feature" "tall"; }
   .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
 }
 @media (max-width: 479px) {
@@ -315,7 +315,7 @@ a { color: inherit; }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 
-/* ---------- Shared art-page tokens (home + commissions) ---------- */
+/* ---------- Art-page tokens ---------- */
 :root {
   --sheet: color-mix(in srgb, var(--bg) 78%, transparent);
   --sheet-line: color-mix(in srgb, #ffffff 55%, transparent);
@@ -357,23 +357,10 @@ a { color: inherit; }
 
 /* Shared nav states */
 .nav__links a[aria-current="page"] { color: var(--text); background: var(--surface); }
-/* Four main links (Projects, Commissions, Open source, plus Contact on home) need
-   room, so About and Contact drop out first and the surname goes on phones. */
-@media (max-width: 719px) { .nav__hide-sm { display: none; } }
-@media (max-width: 639px) { .nav__hide-xs { display: none; } }
-@media (max-width: 559px) { .nav__last { display: none; } }
+/* Three links (Projects, About, Contact): the surname drops out on narrow phones. */
+@media (max-width: 399px) { .nav__last { display: none; } }
 @media (max-width: 374px) {
   .nav__links a { padding: 6px 5px; font-size: 0.8125rem; }
   .nav__name { font-size: 0.875rem; }
 }
 @media (max-width: 339px) { .nav__links a { padding: 6px 3px; font-size: 0.75rem; } .nav__inner { gap: 8px; } }
-
-/* Home page commissions band */
-.band {
-  display: grid; grid-template-columns: 1fr auto; gap: 24px 40px; align-items: center;
-  padding: 40px; border-radius: var(--radius);
-  background: var(--accent-soft); color: var(--accent-soft-ink);
-}
-.band h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.15; letter-spacing: -0.03em; font-weight: 600; }
-.band p { margin-top: 8px; opacity: 0.85; max-width: 52ch; }
-@media (max-width: 767px) { .band { grid-template-columns: 1fr; padding: 28px; } }

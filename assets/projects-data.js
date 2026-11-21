@@ -15,7 +15,7 @@
   Fields (only title and summary are required):
     title     project name
     area      the filter it belongs to. Use one of:
-              "Backend & data", "Systems & DevOps", "Games", "C++", "Web"
+              "Backend & data", "Systems & DevOps", "C++", "Web"
               (or a new one; filter buttons appear once you have 4+ projects)
     summary   one or two sentences
     tags      tech used, shown as small chips: ["Python", "SQLite"]
@@ -63,62 +63,6 @@ window.PROJECTS = [
     facts: [
       { label: "Storage", value: "3-table SQLite schema" },
       { label: "Dashboard", value: "Top deals, store comparisons, price trends" },
-    ],
-  },
-  {
-    title: "Murim Ascent combat system",
-    area: "Games",
-    summary: "Parry-based melee combat for a Deepwoken-inspired Roblox game, with M1 feints and cancels, posture, and readable attack tells.",
-    tags: ["Luau", "Rojo", "Selene", "LemonSignal"],
-    image: "assets/work/murim-combat-poster.jpg",
-    status: "Prototype",
-    links: [{ label: "Watch it", url: "commissions.html#work" }],
-    facts: [
-      { label: "Netcode", value: "Client-predicted, server-validated" },
-      { label: "Built on", value: "Separate combat and movement state machines" },
-    ],
-  },
-  {
-    title: "Tree jumping",
-    area: "Games",
-    summary: "Aim-and-hop traversal for Naruto-style Roblox games: arc between trees, perch on branches, and chain jumps through a forest.",
-    tags: ["Luau", "Rojo"],
-    image: "assets/work/tree-jump-poster.jpg",
-    links: [{ label: "Watch it", url: "commissions.html#work" }],
-    facts: [
-      { label: "Controls", value: "Y to hop, Space to launch off a branch" },
-      { label: "Level design", value: "Optional landing markers per tree" },
-    ],
-  },
-  {
-    title: "Jianghu movement system",
-    area: "Games",
-    summary: "Momentum-based parkour movement for my parry-focused Roblox RPG. Sprint, slide, wall run, wall boost and vault all chain together, and chaining builds a Flow meter that raises the speed cap.",
-    tags: ["Luau", "Rojo", "Wally", "Lune tests"],
-    image: "assets/work/jianghu-movement-poster.jpg",
-    links: [{ label: "Watch it", url: "commissions.html#work" }],
-    steps: [
-      { icon: "game-controller", title: "Input", text: "Double-tap to run, hold to sprint, jump to wall run" },
-      { icon: "cpu", title: "State machine", text: "One shared FSM drives every move" },
-      { icon: "desktop-tower", title: "Server check", text: "Client predicts, server checks speed and corrects" },
-      { icon: "lightning", title: "Feel", text: "Spring camera, FOV kicks, sounds and particles" },
-    ],
-  },
-  {
-    title: "Inventory & Shop System",
-    area: "Games",
-    summary: "A server-authoritative inventory and shop for Roblox in strictly typed Luau, built to drop into any game. Items, tunables and visuals each live in one module.",
-    tags: ["Luau", "Rojo", "ProfileStore", "luau-lsp", "StyLua", "Selene"],
-    status: "In development",
-    art: "assets/img/blossom-macro.webp",
-    links: [{ label: "Source", url: "https://github.com/JMScripts1/Roblox-Inventory-System" }],
-    roadmap: [
-      { title: "Data layer", text: "Profile template and saving through ProfileStore", done: true },
-      { title: "Inventory API", text: "Public add, remove and has calls, plus an equip signal", done: true },
-      { title: "Shop", text: "Buy and sell-back, every request validated" },
-      { title: "Placeholder UI", text: "24-slot grid and equipment slots" },
-      { title: "Edge cases", text: "Full bags, low funds, spam and malformed requests" },
-      { title: "Final UI", text: "Themed styling, tooltips and drag and drop" },
     ],
   },
 ];
